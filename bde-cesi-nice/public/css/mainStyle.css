@@ -1,0 +1,18 @@
+html {
+	color: black;
+	font-family: cursive;
+}
+
+.header {
+	display: block;
+	background: grey;
+}
+
+.main {
+	display: block;
+}
+
+.footer {
+	display: block;
+	background: grey;
+}
