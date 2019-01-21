@@ -71,7 +71,9 @@ class UtilisateursController extends Controller
      */
     public function edit_utilisateur($id_utilisateur)
     {
-        $utilisateur = 
+        $utilisateur = $this->UtilisateursRepository->getById($id_utilisateur);
+
+        return view (/* 'vue pour modifier les données d'un compte' */ , compact('utilisateur'));
     }
 
     /**
@@ -83,7 +85,9 @@ class UtilisateursController extends Controller
      */
     public function update_utilisateur(Request $request, $id_utilisateur)
     {
-        //
+        $this->UtilisateursRepository->update($id_utilisateur, $request->all());
+        
+        return redirect('utilisateur')->withOk("L'utilisateur " . $request->input('nom_utilisateur') . " " . input('prenom_utilisateur') . " a été modifié.");
     }
 
     /**
@@ -94,6 +98,8 @@ class UtilisateursController extends Controller
      */
     public function destroy_utilisateur($id_utilisateur)
     {
-        //
+        $this->UtilisateursRepository->destroy($id_utilisateur);
+
+        return back();
     }
 }

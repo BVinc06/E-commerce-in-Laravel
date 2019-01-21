@@ -16,16 +16,16 @@ class utilisateursRepository
 
 	private function save(Utilisateurs $utilisateurs, Array $inputs)
 	{
-		$utilisateurs->firstname = $inputs['prenom_utilisateurs'];
-		$utilisateurs->lastname = $inputs['nom_utilisateurs'];
-		$utilisateurs->email = $inputs['email_utilisateurs'];
-		$utilisateurs->campus = $inputs['campus_utilisateurs']	
+		$utilisateurs->firstname = $inputs['prenom_utilisateur'];
+		$utilisateurs->lastname = $inputs['nom_utilisateur'];
+		$utilisateurs->email = $inputs['email_utilisateur'];
+		$utilisateurs->campus = $inputs['campus_utilisateur']	
 		$utilisateurs->admin = $inputs['password_utilisateur'];
         $utilisateurs->admin = $inputs['d_etudiant_utilisateur'];
         $utilisateurs->admin = $inputs['d_bde_utilisateur'];
         $utilisateurs->admin = $inputs['d_salarie_utilisateur'];
 		$utilisateurs->admin = isset($inputs['admin']);	
-		
+
 		$utilisateurs->save();
 	}
 
