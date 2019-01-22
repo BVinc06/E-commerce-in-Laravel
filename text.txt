@@ -1,0 +1,17 @@
+----- MIGRATION -----
+php artisan make:migration create_tableName_table 	--> Créer la migration
+php artisan migrate 					--> Up les migrations
+php artisan migrate:rollback 				--> Down les migrations
+php artisan migrate:refresh 				--> Down & Up les migrations
+---------------------
+
+------- ELOQUENT ----
+php artisan make:model Email --> Créer le model (folder app)
+Mettre : 
+	- protected $table = 'emails';
+	- public $timestamps = false;
+---------------------
+
+---------- CONTROLLER ----
+php artisan make:controller UserController --resource
+--------------------------

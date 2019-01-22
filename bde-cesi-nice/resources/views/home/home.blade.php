@@ -72,7 +72,7 @@ Accueil
 	<hr>
 	<h4>Liaison DB OK</h4>
 	@foreach ($noms as $nom)
-		<p>{{ $nom->nom }}</p>
+		<p>{{ $nom->id }}</p>
 	@endforeach
 
 @endsection

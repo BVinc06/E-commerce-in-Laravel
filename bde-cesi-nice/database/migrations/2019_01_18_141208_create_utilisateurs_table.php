@@ -14,16 +14,17 @@ class CreateUtilisateursTable extends Migration
     public function up()
     {
         Schema::create('utilisateurs', function (Blueprint $table) {
-            $table->increments('id_utilisateur');
+
+            $table->increments('id');
             $table->string('nom_utilisateur');
             $table->string('prenom_utilisateur');
-            $table->string('email_utilisateur');
+            $table->string('email_utilisateur')->unique();
             $table->enum('campus_utilisateur', ['Sophia Antipolis','Aix-en-provence','Montpellier','Toulouse','Pau','Bordeaux','Grenoble','Lyon','Dijon','La Rochelle','Angoulême','Orléans','Le Mans', 'Saint-Nazaire', 'Nantes', 'Brest', 'Caen', 'Rouen', 'Paris Nanterre', 'Reims', 'Arras', 'Lille', 'Nancy', 'Strasbourg']);
             $table->string('password_utilisateur');
-            $table->boolean('d_etudiant_utilisateur');
-            $table->boolean('d_bde_utilisateur');
-            $table->boolean('d_salarie_utilisateur');
-
+            $table->boolean('d_etudiant_utilisateur')->default(false);
+            $table->boolean('d_bde_utilisateur')->default(false);
+            $table->boolean('d_salarie_utilisateur')->default(false);
+            $table->rememberToken();
             $table->timestamps();
         });
     }
