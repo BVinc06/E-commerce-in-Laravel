@@ -15,7 +15,6 @@ Route::get('/', function () {
 	
 	$noms = DB::select('select * from test');
     return view('home/home')->withNoms($noms);
-
 });
 
 Route::resource('categories', 'CategoriesController');
