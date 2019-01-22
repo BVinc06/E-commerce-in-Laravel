@@ -13,7 +13,7 @@ class UtilisateursController extends Controller
 {
 
     protected $UtilisateursRepository;
-    protected nbrPerPage = 10;
+    protected $nbrPerPage = 10;
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +43,7 @@ class UtilisateursController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store_utilisateur(Creation_Utilisateur $request)
+    public function store_utilisateur(Creation_Utilisateurs $request)
     {
         $utilisateur = $this->UtilisateursRepository->store($request->all());
 
@@ -73,7 +73,7 @@ class UtilisateursController extends Controller
     {
         $utilisateur = $this->UtilisateursRepository->getById($id_utilisateur);
 
-        return view (/* 'vue pour modifier les données d'un compte' */ , compact('utilisateur'));
+        return view ("home", compact('utilisateur'));
     }
 
     /**

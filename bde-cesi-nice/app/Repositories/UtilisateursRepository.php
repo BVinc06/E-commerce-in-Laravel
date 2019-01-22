@@ -16,15 +16,15 @@ class utilisateursRepository
 
 	private function save(Utilisateurs $utilisateurs, Array $inputs)
 	{
-		$utilisateurs->firstname = $inputs['prenom_utilisateur'];
-		$utilisateurs->lastname = $inputs['nom_utilisateur'];
-		$utilisateurs->email = $inputs['email_utilisateur'];
-		$utilisateurs->campus = $inputs['campus_utilisateur']	
-		$utilisateurs->admin = $inputs['password_utilisateur'];
-        $utilisateurs->admin = $inputs['d_etudiant_utilisateur'];
-        $utilisateurs->admin = $inputs['d_bde_utilisateur'];
-        $utilisateurs->admin = $inputs['d_salarie_utilisateur'];
-		$utilisateurs->admin = isset($inputs['admin']);	
+		$utilisateur->firstname = $inputs['prenom_utilisateur'];
+		$utilisateur->lastname = $inputs['nom_utilisateur'];
+		$utilisateur->email = $inputs['email_utilisateur'];
+		$utilisateur->campus = $inputs['campus_utilisateur']	
+		$utilisateur->admin = $inputs['password_utilisateur'];
+        $utilisateur->admin = $inputs['d_etudiant_utilisateur'];
+        $utilisateur->admin = $inputs['d_bde_utilisateur'];
+        $utilisateur->admin = $inputs['d_salarie_utilisateur'];
+		$utilisateur->admin = isset($inputs['admin']);	
 
 		$utilisateurs->save();
 	}
@@ -36,27 +36,28 @@ class utilisateursRepository
 
 	public function store(Array $inputs)
 	{
-		$utilisateurs = new $this->utilisateurs;		
-		$utilisateurs->password = bcrypt($inputs['password']);
+		$utilisateur = new $this->utilisateur;		
+		$utilisateur->password = bcrypt($inputs['password_utilisateur']);
 
 		$this->save($utilisateurs, $inputs);
 
 		return $utilisateurs;
 	}
 
-	public function getById($id)
+	public function getById($id_utilisateur)
 	{
-		return $this->utilisateurs->findOrFail($id);
+		//Equivalent d'une requête SQL tu type select * from `Utilisateurs` where `id` = '...'
+		return $this->utilisateurs->findOrFail($id_utilisateur);
 	}
 
-	public function update($id, Array $inputs)
+	public function update($id_utilisateur, Array $inputs)
 	{
-		$this->save($this->getById($id), $inputs);
+		$this->save($this->getById($id_utilisateur), $inputs);
 	}
 
-	public function destroy($id)
+	public function destroy($id_utilisateur)
 	{
-		$this->getById($id)->delete();
+		$this->getById($id_utilisateur)->delete();
 	}
 
 }
