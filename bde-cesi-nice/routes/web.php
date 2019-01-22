@@ -29,7 +29,7 @@ Route::get('/signin',function(){
 
 Route::get('/',function(){
     if(Auth::guest()){
-        return View::make('home/login');
+        return View::make('home/home');
     }
     return View::make('home/home');
 });
