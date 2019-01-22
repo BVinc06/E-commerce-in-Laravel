@@ -16,3 +16,10 @@ Route::get('/', function () {
 	$noms = DB::select('select * from test');
     return view('home/home')->withNoms($noms);
 });
+
+Route::resource('categories', 'CategoriesController');
+Route::resource('commentaires', 'CommentairesController');
+Route::resource('evenements', 'EvenementsController');
+Route::resource('photos', 'PhotosController');
+Route::resource('produits', 'ProduitsController');
+Route::resource('utilisateurs', 'UtilisateursController');
