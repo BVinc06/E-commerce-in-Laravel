@@ -14,15 +14,10 @@ class CreateCommentairesTable extends Migration
     public function up()
     {
         Schema::create('commentaires', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_commentaire');
             $table->string('description_commentaire');
             $table->date('date_commentaire');
             $table->string('auteur_commentaire');
-            $table->integer('photos_id')->foreign('photos_id')
-                  ->references('id')
-                  ->on('photos')
-                  ->onDelete('restrict')
-                  ->onUpdate('restrict');
             $table->timestamps();
         });
     }
@@ -34,11 +29,6 @@ class CreateCommentairesTable extends Migration
      */
     public function down()
     {
-
-        Schema::table('commentaires', function(Blueprint $table) {
-            $table->dropForeign('commentaires_photos_id_foreign');
-        });
-
         Schema::dropIfExists('commentaires');
     }
 }

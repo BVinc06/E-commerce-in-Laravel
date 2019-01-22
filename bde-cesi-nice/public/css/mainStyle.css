@@ -1,18 +1,93 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
 html {
 	color: black;
 	font-family: cursive;
 }
 
-.header {
-	display: block;
-	background: grey;
-}
 
 .main {
 	display: block;
 }
 
-.footer {
-	display: block;
-	background: grey;
+/*------------------- EVENT STYLE ------------*/
+div#zoneEvent{
+	margin-top: 50px;
+	width:90%;
+	height: auto;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: black;
+	color:white;
 }
+
+img#EventPhoto{
+	width: 70%;
+	height: auto;
+}
+
+.eventpicture{
+	text-align: center;
+}
+
+.boutonevent{
+	text-align: right;
+	padding-right: 20px;
+	padding-top: 5px;
+}
+
+.ajoutevent{
+	float: right;
+	bottom: 0;
+	position:relative;
+}
+
+.eventcrea{
+    border:1px solid #000000;
+}
+
+textarea.descripEvent{
+	width:100%;
+    direction:rtl;
+    display:block;
+    max-width:100%;
+    line-height:1.5;
+    padding:15px 15px 30px;
+    border-radius:3px;
+    border:1px solid #000000;
+    font:13px Tahoma, cursive;
+    transition:box-shadow 0.5s ease;
+    box-shadow:0 4px 6px rgba(0,0,0,0.1);
+    font-smoothing:subpixel-antialiased;
+    background:linear-gradient(#FFFFFF, #FFFFFF);
+    background:-o-linear-gradient(#FFFFFF, #FFFFFF);
+    background:-ms-linear-gradient(#FFFFFF, #FFFFFF);
+    background:-moz-linear-gradient(#FFFFFF, #FFFFFF);
+    background:-webkit-linear-gradient(#FFFFFF, #FFFFFF);
+}
+/*-------------------------------------------*/
+
+/*------------------- IDEA STYLE ------------*/
+div.containerIdea{
+	margin-top: 50px;
+	width:auto;
+	height: auto;
+	background-color: black;
+	color:white;
+}
+
+img#IdeaPhoto{
+	width: 70%;
+	height: auto;
+}
+
+.ideapicture{
+	text-align: center;
+}
+
+.boutonidea{
+	text-align: right;
+	padding-right: 20px;
+	padding-top: 5px;
+}
+/*-------------------------------------------*/

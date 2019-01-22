@@ -1,0 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+footer{
+	background: rgb(0, 0, 0);
+	font-family: "Roboto", "Helvetica Neue", "Helvetica",  "Arial", sans-serif;
+	color:white;
+    display: block;
+	position:absolute;
+	bottom:0;
+	width:100%;
+	text-align: center;
+	padding-top: 2%;
+}

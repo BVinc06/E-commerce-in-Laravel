@@ -1,78 +1,70 @@
 @extends('../default/default')
 
-@section('title')
-Accueil
-@endsection
 
-@section('header')
-	@include('../default/mainHeader')
-@endsection
-
-@section('footer')
-	@include('../default/mainFooter')
-@endsection
 
 @section('moreCSS')
 {{-- 
 	On peut definir des styles css qui viendront s'ajouter et écraser les styles globaux : 
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/STYLE_A_DEFINIR.css') }}">
---}}
-@endsection
+  --}}
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/headerStyle.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/footerStyle.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/mainStyle.css') }}">
+  @endsection
 
-@section('moreJS')
-{{-- 
-	On peut definir des fichiers JS qui viendront s'ajouter : 
-	<script type="text/javascript" src="js/mainJs.js"></script>
---}}
-@endsection
+  @section('moreJS')
+  {{-- 
+   On peut definir des fichiers JS qui viendront s'ajouter : 
+   <script type="text/javascript" src="js/mainJs.js"></script>
+   --}}
+   @endsection
 
-@section('main')
+   @section('main')
 
-	@auth
-		<h1>AUTH</h1>
-		<p>
-			<!-- CTRL + MAJ + P + lorem -->
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		<p>
-	@endauth
+   @auth
+   @section('title')
+   Accueil
+   @endsection
 
-	@guest
-		<h1>GEST</h1>
-		<p>
-			<!-- CTRL + MAJ + P + lorem -->
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		<p>
-	@endguest
+   @section('header')
+   @include('../default/mainHeader')
+   @endsection
 
-	<hr>
-	<h4>Boostrap OK</h4>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm">
-				One of three columns
-			</div>
-			<div class="col-sm">
-				One of three columns
-			</div>
-			<div class="col-sm">
-				One of three columns
-			</div>
-		</div>
-	</div>
-	<hr>
-	<h4>Liaison DB OK</h4>
-	@foreach ($noms as $nom)
-		<p>{{ $nom->id }}</p>
-	@endforeach
+   @section('footer')
+   @include('../default/mainFooter')
+   @endsection
 
-@endsection
+   <!-- SLIDES -->
+   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{{ asset('image/slide1.png') }}" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{ asset('image/slide2.png') }}" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{{ asset('image/slide3.png') }}" alt="Third slide">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <!------------------->
+
+  <h1>AUTH</h1>
+
+  @endauth
+
+  @guest
+  
+
+  @endguest
+
+  @endsection
