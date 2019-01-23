@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produits extends Model
 {
-
     protected $table = 'produits';
     
     public $timestamps = false;
@@ -20,5 +19,4 @@ class Produits extends Model
 	{
 		return $this->belongsToMany('App\Utilisateurs', 'achete_produit_utilisateur');
 	} 
-
 }

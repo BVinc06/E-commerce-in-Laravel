@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photos extends Model
 {
-
     protected $table = 'photos';
     
     public $timestamps = false;
@@ -25,5 +24,4 @@ class Photos extends Model
 	{
 		return $this->belongsToMany('App\Utilisateurs' , 'like_photo_utilisateur');
 	} 
-
 }
