@@ -10,12 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
 	
 	$noms = DB::select('select * from test');
     return view('home/home')->withNoms($noms);
-});
+});*/
 
 Route::resource('categories', 'CategoriesController');
 Route::resource('commentaires', 'CommentairesController');

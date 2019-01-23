@@ -7,14 +7,15 @@ use App\Utilisateurs;
 class utilisateursRepository
 {
 
-    protected $utilisateurs;
+    protected $utilisateur;
 
-    public function __construct(Utilisateurs $utilisateurs)
+    public function __construct(Utilisateurs $utilisateur)
 	{
-		$this->utilisateurs = $utilisateurs;
+		$this->utilisateur = $utilisateur;
+		var_dump($this->utilisateur);
 	}
 
-	private function save(Utilisateurs $utilisateurs, Array $inputs)
+	private function save(Utilisateurs $utilisateur, Array $inputs)
 	{
 		$utilisateur->firstname = $inputs['prenom_utilisateur'];
 		$utilisateur->lastname = $inputs['nom_utilisateur'];
@@ -31,7 +32,7 @@ class utilisateursRepository
 
 	public function getPaginate($n)
 	{
-		return $this->Utilisateurs->paginate($n);
+		return $this->utilisateur->paginate($n);
 	}
 
 	public function store(Array $inputs)
