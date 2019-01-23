@@ -5,23 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
-use App\Repositories\UtilisateursRepository;
+//use App\Repositories\UtilisateursRepository;
 
 //use App\Http\Controllers\Controller;
 
-class UtilisateursController extends Controller
+class UtilisateursController
 {
 
     protected $UtilisateursRepository;
     protected $nbrPerPage = 10;
 
 
-
+/*
     public function __construct(UtilisateursRepository $User)
     {
         $this->UtilisateursRepository = $User;
     }
-
+*/
     /**
      * Display a listing of the resource.
      *

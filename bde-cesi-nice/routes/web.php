@@ -93,4 +93,3 @@ Route::resource('evenements', 'EvenementsController');
 Route::resource('photos', 'PhotosController');
 Route::resource('produits', 'ProduitsController');
 Route::resource('utilisateurs', 'UtilisateursController');
-Route::resource('test', 'TestController');
