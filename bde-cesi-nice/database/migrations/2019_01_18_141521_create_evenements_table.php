@@ -14,6 +14,7 @@ class CreateEvenementsTable extends Migration
     public function up()
     {
         Schema::create('evenements', function (Blueprint $table) {
+
             $table->increments('id');
             $table->string('nom_evenement');
             $table->string('auteur_evenement');
@@ -27,6 +28,11 @@ class CreateEvenementsTable extends Migration
             $table->string('description_image_evenement');
             $table->boolean('recurrence_evenement');
             $table->boolean('idee_evenement');
+            $table->integer('utilisateurs_id')->foreign('utilisateurs_id')
+                  ->references('id')
+                  ->on('utilisateurs')
+                  ->onDelete('restrict')
+                  ->onUpdate('restrict');
             $table->timestamps();
         });
     }
@@ -38,9 +44,11 @@ class CreateEvenementsTable extends Migration
      */
     public function down()
     {
+
         Schema::table('evenements', function(Blueprint $table) {
             $table->dropForeign('evenements_utilisateurs_id_foreign');
         });
+        
         Schema::dropIfExists('evenements');
     }
 }
