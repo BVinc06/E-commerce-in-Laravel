@@ -2,39 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Utilisateurs;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
-//use App\Repositories\UtilisateursRepository;
 
 //use App\Http\Controllers\Controller;
 
 class UtilisateursController
 {
-
-    protected $UtilisateursRepository;
-    protected $nbrPerPage = 10;
-
-
-/*
-    public function __construct(UtilisateursRepository $User)
-    {
-        $this->UtilisateursRepository = $User;
-    }
-*/
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function index()
     {
-        $utilisateur = $this->UtilisateursRepository->getPaginate($this->nbrPerPage);
-        $links = $utilisateur->render();
-        return view ('index', compact('utilisateur', 'links'));
-
+        $utilisateurs = Utilisateurs::all();
+        return view('home/utilisateursliste')->withUtilisateurs($utilisateurs);
     }
 
     /**
@@ -42,11 +27,9 @@ class UtilisateursController
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
-        return view('signin');
-
+        
     }
 
     /**
@@ -55,12 +38,9 @@ class UtilisateursController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-
-    public function store(Creation_Utilisateurs $request)
+    public function store(Request $request)
     {
-        $utilisateur = $this->UtilisateursRepository->store($request->all());
-
-        return redirect('utilisateur')->withok("L'utilisateur " . $utilisateur->lastname . " " . $utilisateur->firstname . " a été créé avec succès.");
+        //
     }
 
     /**
@@ -69,13 +49,9 @@ class UtilisateursController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function show($id_utilisateur)
+    public function show($id)
     {
-        $utilisateur = $this->userRepository->getById($id_utilisateur);
-
-        return view('liste_utilisateurs',  compact('utilisateur'));
-
+        //
     }
 
     /**
@@ -84,13 +60,9 @@ class UtilisateursController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function edit($id_utilisateur)
+    public function edit($id)
     {
-        $utilisateur = $this->UtilisateursRepository->getById($id_utilisateur);
-
-        return view ("home", compact('utilisateur'));
-
+        //
     }
 
     /**
@@ -100,13 +72,9 @@ class UtilisateursController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function update(Request $request, $id_utilisateur)
+    public function update(Request $request, $id)
     {
-        $this->UtilisateursRepository->update($id_utilisateur, $request->all());
-        
-        return redirect('utilisateur')->withOk("L'utilisateur " . $request->input('nom_utilisateur') . " " . input('prenom_utilisateur') . " a été modifié.");
-
+        //
     }
 
     /**
@@ -115,12 +83,8 @@ class UtilisateursController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy($id_utilisateur)
+    public function destroy($id)
     {
-        $this->UtilisateursRepository->destroy($id_utilisateur);
-
-        return back();
-
+        //
     }
 }
