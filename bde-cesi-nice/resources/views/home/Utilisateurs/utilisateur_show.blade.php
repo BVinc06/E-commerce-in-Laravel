@@ -1,4 +1,4 @@
-@extends('../default/default')
+@extends('../../default/default')
 
 @section('title')
 		BDE CESI Nice Événements
@@ -6,11 +6,11 @@
 
 
 @section('header')
-  @include('../default/mainHeader')
+  @include('../../default/mainHeader')
 @endsection
 
 @section('footer')
-  @include('../default/mainFooter')
+  @include('../../default/mainFooter')
 @endsection
 
 @section('moreCSS')
@@ -37,37 +37,25 @@
 
 @section('main')
 <div class="container">
-	<h1 class="my-4">Liste des utilisateurs</h1>
- 	<table class="table">
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>Nom</th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach ($utilisateurs as $utilisateur)
-				<tr>
-					<td>{!! $utilisateur->id !!}</td>
-					<td class="text-primary"><strong>{!! $utilisateur->nom_utilisateur !!}</strong></td>
-					<td>
-						{!! link_to_route('utilisateurs.show', 'Voir', [$utilisateur->id], ['class' => 'btn btn-success btn-block']) !!}
-					</td>
-					<td>
-						{!! link_to_route('utilisateurs.edit', 'Modifier', [$utilisateur->id], ['class' => 'btn btn-warning btn-block']) !!}
-					</td>
-					<td>
-						{!! Form::open(['method' => 'DELETE', 'route' => ['utilisateurs.destroy', $utilisateur->id]]) !!}
-							{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')']) !!}
-						{!! Form::close() !!}
-					</td>
-				</tr>
-			@endforeach
-			</tbody>
-	</table>
-
-</div>
+	<h1 class="my-4">Fiche d'utilisateur</h1>
+	@isset($updated)
+		<div class="container-fluid" style="background: green;">
+			{{ $updated }}
+		</div>
+	@endisset	
+	<div class="col-sm-offset-4 col-sm-4">
+    	<br>
+		<div class="panel panel-primary">	
+			<div class="panel-body"> 
+				<p>Nom : {{ $utilisateur->nom_utilisateur }}</p>
+				<p>Email : {{ $utilisateur->email_utilisateur }}</p>
+				@if($utilisateur->d_bde_utilisateur == 1)
+					Administrateur
+				@endif
+			</div>
+		</div>				
+		<a href="javascript:history.back()" class="btn btn-primary">
+			<span class="glyphicon glyphicon-circle-arrow-left"></span> Retour
+		</a>
+	</div>
 @endsection

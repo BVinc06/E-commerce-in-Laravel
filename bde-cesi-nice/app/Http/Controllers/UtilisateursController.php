@@ -19,7 +19,7 @@ class UtilisateursController
     public function index()
     {
         $utilisateurs = Utilisateurs::all();
-        return view('home/utilisateursliste')->withUtilisateurs($utilisateurs);
+        return view('home/Utilisateurs/utilisateurs')->withUtilisateurs($utilisateurs);
     }
 
     /**
@@ -29,7 +29,7 @@ class UtilisateursController
      */
     public function create()
     {
-        
+        return view('home/Utilisateurs/utilisateur_create');
     }
 
     /**
@@ -40,7 +40,32 @@ class UtilisateursController
      */
     public function store(Request $request)
     {
-        //
+        $utilisateur = new Utilisateurs;
+
+        $utilisateur->nom_utilisateur = $request['nom_utilisateur'];
+        $utilisateur->prenom_utilisateur = $request['prenom_utilisateur'];
+        $utilisateur->email_utilisateur = $request['email_utilisateur'];
+        $utilisateur->password_utilisateur = $request['password_utilisateur'];
+        
+        if(isset($request['d_bde_utilisateur'])){
+            $utilisateur->d_bde_utilisateur = 1;
+        } else {
+            $utilisateur->d_bde_utilisateur = 0;
+        }
+        if(isset($request['d_salarie_utilisateur'])){
+            $utilisateur->d_salarie_utilisateur = 1;
+        } else {
+            $utilisateur->d_salarie_utilisateur = 0;
+        }
+        if(isset($request['d_etudiant_utilisateur'])){
+            $utilisateur->d_etudiant_utilisateur = 1;
+        } else {
+            $utilisateur->d_etudiant_utilisateur = 0;
+        }
+
+        $utilisateur->save();
+
+        return view('home/Utilisateurs/utilisateur_edit')->withUtilisateur($utilisateur)->withUpdated('Utilisateur ajouté.');
     }
 
     /**
@@ -51,7 +76,8 @@ class UtilisateursController
      */
     public function show($id)
     {
-        //
+        $utilisateur = Utilisateurs::find($id)->first();
+        return view('home/Utilisateurs/utilisateur_show')->withUtilisateur($utilisateur);
     }
 
     /**
@@ -62,7 +88,8 @@ class UtilisateursController
      */
     public function edit($id)
     {
-        //
+        $utilisateur = Utilisateurs::find($id)->first();
+        return view('home/Utilisateurs/utilisateur_edit')->withUtilisateur($utilisateur);
     }
 
     /**
@@ -74,7 +101,31 @@ class UtilisateursController
      */
     public function update(Request $request, $id)
     {
-        //
+        $utilisateur = Utilisateurs::find($id)->first();
+        //On récupère les éléments des champs
+        
+        $utilisateur->nom_utilisateur = $request['nom_utilisateur'];
+        $utilisateur->email_utilisateur = $request['email_utilisateur'];
+        
+        if(isset($request['d_bde_utilisateur'])){
+            $utilisateur->d_bde_utilisateur = 1;
+        } else {
+            $utilisateur->d_bde_utilisateur = 0;
+        }
+        if(isset($request['d_salarie_utilisateur'])){
+            $utilisateur->d_salarie_utilisateur = 1;
+        } else {
+            $utilisateur->d_salarie_utilisateur = 0;
+        }
+        if(isset($request['d_etudiant_utilisateur'])){
+            $utilisateur->d_etudiant_utilisateur = 1;
+        } else {
+            $utilisateur->d_etudiant_utilisateur = 0;
+        }
+
+        $utilisateur->save();
+
+        return view('home/Utilisateurs/utilisateur_edit')->withUtilisateur($utilisateur)->withUpdated('Utilisateur modifié.');
     }
 
     /**
@@ -85,6 +136,8 @@ class UtilisateursController
      */
     public function destroy($id)
     {
-        //
+        Utilisateurs::find($id)->first()->delete();
+        $utilisateurs = Utilisateurs::all();
+        return view('home/Utilisateurs/utilisateurs')->withDeleted('Utilisateur supprimé.')->withUtilisateurs($utilisateurs);
     }
 }
