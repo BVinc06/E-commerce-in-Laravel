@@ -47,6 +47,10 @@ Route::get('/create_event',function(){
     return View::make('home/create_event');
 });
 
+Route::get('/create_article',function(){
+    return View::make('home/create_article');
+});
+
 Route::get('/create_idea',function(){
     return View::make('home/create_idea');
 });

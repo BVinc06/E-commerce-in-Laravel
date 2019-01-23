@@ -1,7 +1,7 @@
 @extends('../default/default')
 
 @section('title')
-		BDE CESI Nice Boutique
+		BDE CESI Nice Créer un article
 	@endsection
 
 	@section('header')
@@ -35,38 +35,21 @@
 @endsection
 
 @section('main')
-
 <div class="container">
-	 <h1 class="my-4">Boutique <a class="btn btn-primary" href="{{ asset('create_article') }}">Ajouter un article</a></h1>
+	 <h1 class="my-4">Créer un article</h1>
 
-	 <!-- SLIDES -->
-   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="{{ asset('image/article1.jpg') }}" alt="First slide">
+<div class="row">
+      	<div class="col-md-7">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+        </div>
+        <div class="col-md-5">
+          <h6>Titre : <input class="eventcrea" type="text" name="titre"/></h6>
+          <h6>Prix : <input class="eventcrea" type="number" name="prix"/>€</h6>
+          <h6>Quantité : <input class="eventcrea" type="text" name="lieu"/></h6>
+          <h6>Description : <br><textarea class="descripEvent" type="text" name="titre"></textarea></h6>
+          <a class="btn btn-primary ajoutEvent" href="#">Ajouter l'article</a>
+        </div>
       </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="{{ asset('image/article2.png') }}" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="{{ asset('image/slide1.png') }}" alt="Third slide">
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  <!------------------->
-  <br>
-
-	
-	@include('../default/shop')
-
 	</div>
 
 @endsection

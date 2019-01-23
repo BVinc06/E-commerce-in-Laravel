@@ -36,8 +36,10 @@ BDE CESI Nice Connexion
 @endsection
 
 @section('main')
-
 <div class="container">
+	 <h1 class="my-4">Mon compte </h1>
+
+
 	<form action="{{ url('users') }}" method="POST">
 		{{ csrf_field() }}
 		<div class="row">
@@ -83,7 +85,7 @@ BDE CESI Nice Connexion
 
 			</div>
 			<div class="col-lg-2 col-md-4"> 
-				<input style="cursor: pointer;" type="submit" value="Envoyer !">
+				<input style="cursor: pointer;" type="submit" value="Enregistrer">
 			</div>
 		</div>
 

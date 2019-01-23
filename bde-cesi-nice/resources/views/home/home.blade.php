@@ -7,8 +7,6 @@
 	On peut definir des styles css qui viendront s'ajouter et écraser les styles globaux : 
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/STYLE_A_DEFINIR.css') }}">
   --}}
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/headerStyle.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('css/footerStyle.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/mainStyle.css') }}">
   @endsection
 
