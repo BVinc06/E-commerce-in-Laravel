@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EvenementsRequest extends FormRequest
+class Update_Evenements extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,12 @@ class EvenementsRequest extends FormRequest
      */
     public function rules()
     {
+        
+        $id_evenements = $this->Evenements;
+        
         return [
-            //
+            
+
         ];
     }
 }

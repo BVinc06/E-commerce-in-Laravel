@@ -14,7 +14,7 @@ class CreateEvenementsTable extends Migration
     public function up()
     {
         Schema::create('evenements', function (Blueprint $table) {
-            $table->increments('id_evenement');
+            $table->increments('id');
             $table->string('nom_evenement');
             $table->string('auteur_evenement');
             $table->dateTime('date_debut_evenement');
@@ -38,6 +38,9 @@ class CreateEvenementsTable extends Migration
      */
     public function down()
     {
+        Schema::table('evenements', function(Blueprint $table) {
+            $table->dropForeign('evenements_utilisateurs_id_foreign');
+        });
         Schema::dropIfExists('evenements');
     }
 }

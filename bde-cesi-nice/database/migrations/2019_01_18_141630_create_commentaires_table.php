@@ -14,7 +14,7 @@ class CreateCommentairesTable extends Migration
     public function up()
     {
         Schema::create('commentaires', function (Blueprint $table) {
-            $table->increments('id_commentaire');
+            $table->increments('id');
             $table->string('description_commentaire');
             $table->date('date_commentaire');
             $table->string('auteur_commentaire');
@@ -29,6 +29,9 @@ class CreateCommentairesTable extends Migration
      */
     public function down()
     {
+        Schema::table('commentaires', function(Blueprint $table) {
+            $table->dropForeign('commentaires_photos_id_foreign');
+        });
         Schema::dropIfExists('commentaires');
     }
 }
