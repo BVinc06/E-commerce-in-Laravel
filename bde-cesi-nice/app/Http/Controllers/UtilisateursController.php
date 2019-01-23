@@ -17,9 +17,8 @@ class UtilisateursController extends Controller
 
 
 
-    public function __construct()
+    public function __construct(UtilisateursRepository $User)
     {
-        $User = App\Utilisateurs::all();
         $this->UtilisateursRepository = $User;
     }
 
@@ -32,10 +31,9 @@ class UtilisateursController extends Controller
 
     public function index()
     {
-        //$utilisateur = $this->UtilisateursRepository;
-        //$links = $utilisateur->render();
-        //var_dump($utilisateur);
-        //return view ('index', compact('utilisateur', 'links'));
+        $utilisateur = $this->UtilisateursRepository->getPaginate($this->nbrPerPage);
+        $links = $utilisateur->render();
+        return view ('index', compact('utilisateur', 'links'));
 
     }
 

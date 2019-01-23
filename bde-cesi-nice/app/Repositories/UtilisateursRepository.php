@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Utilisateurs;
 
-class utilisateursRepository
+class UtilisateursRepository
 {
 
     protected $utilisateur;
@@ -12,7 +12,6 @@ class utilisateursRepository
     public function __construct(Utilisateurs $utilisateur)
 	{
 		$this->utilisateur = $utilisateur;
-		var_dump($this->utilisateur);
 	}
 
 	private function save(Utilisateurs $utilisateur, Array $inputs)
