@@ -7,6 +7,7 @@
           <h5>Lieu - Prix</h5>
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
           <a class="btn btn-primary" href="#">S'inscrire</a>
+          {!! link_to_route('export', 'Voir la liste des inscrits', 3, ['class' => 'btn btn-primary']) !!}
         </div>
       </div>
       <hr>

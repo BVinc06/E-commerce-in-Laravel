@@ -76,7 +76,7 @@ class UtilisateursController
      */
     public function show($id)
     {
-        $utilisateur = Utilisateurs::find($id)->first();
+        $utilisateur = Utilisateurs::findOrFail($id);
         return view('home/Utilisateurs/utilisateur_show')->withUtilisateur($utilisateur);
     }
 
@@ -88,7 +88,7 @@ class UtilisateursController
      */
     public function edit($id)
     {
-        $utilisateur = Utilisateurs::find($id)->first();
+        $utilisateur = Utilisateurs::findOrFail($id);
         return view('home/Utilisateurs/utilisateur_edit')->withUtilisateur($utilisateur);
     }
 
@@ -101,7 +101,7 @@ class UtilisateursController
      */
     public function update(Request $request, $id)
     {
-        $utilisateur = Utilisateurs::find($id)->first();
+        $utilisateur = Utilisateurs::where('id',$id)->first();
         //On récupère les éléments des champs
         
         $utilisateur->nom_utilisateur = $request['nom_utilisateur'];
@@ -136,7 +136,7 @@ class UtilisateursController
      */
     public function destroy($id)
     {
-        Utilisateurs::find($id)->first()->delete();
+        Utilisateurs::where('id',$id)->first()->delete();
         $utilisateurs = Utilisateurs::all();
         return view('home/Utilisateurs/utilisateurs')->withDeleted('Utilisateur supprimé.')->withUtilisateurs($utilisateurs);
     }

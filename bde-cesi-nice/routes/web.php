@@ -93,3 +93,5 @@ Route::resource('evenements', 'EvenementsController');
 Route::resource('photos', 'PhotosController');
 Route::resource('produits', 'ProduitsController');
 Route::resource('utilisateurs', 'UtilisateursController');
+
+Route::get('/evenements/{n}/export', ['uses' => 'EvenementsController@export_users_registered', 'as' => 'export'])->where('n', '[0-9]+');
