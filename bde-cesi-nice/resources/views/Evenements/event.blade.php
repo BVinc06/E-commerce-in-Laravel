@@ -36,7 +36,7 @@
 @endsection
 
 @section('main')
-<<<<<<< HEAD
+
 
 <div class="container">
 	 <h1 class="my-4">Modifier un evenement</h1>
@@ -102,13 +102,5 @@
 		</a>
 	</div>
 </div>
-=======
-<div class="container">
-	<h1 class="my-4">Liste des événements <a class="btn btn-primary" href="{{ asset('create_event') }}">Ajouter un événement</a></h1>
 
-	@include('Evenements/templateEvent')
-
-</div>
-
->>>>>>> master
 @endsection
