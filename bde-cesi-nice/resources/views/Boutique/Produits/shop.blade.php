@@ -81,7 +81,6 @@
           <h3>Produit : {{ $produit->nom_produit }}</h3>
           <h5>Prix : {{ $produit->prix_produit }}€</h5>
           <p>{{ $produit->description_produit }}</p>
-          {!! link_to_route('shop.show', 'Voir le produit', [$produit->id], ['class' => 'btn btn-primary']) !!}
           {!! link_to_route('shop.add', 'Ajouter au panier', [$produit->id], ['class' => 'btn btn-primary']) !!}
         </div>
       </div>

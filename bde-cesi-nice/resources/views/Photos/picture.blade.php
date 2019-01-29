@@ -39,7 +39,9 @@
 
   		<h1 class="display-4 text-center text-lg-left mt-4 mb-0">Galerie Photos <a class="btn btn-primary bouton_bleu_head" href="{{ asset('imageUpload') }}">Ajouter des photos</a>
   	@if(Auth::user()->d_bde_user)<a id="bouton_bleu_head_dl_photos" class="btn btn-primary" href="{{ asset('create') }}">Télécharger les photos</a>@endif
-  	@if(Auth::user()->d_salarie_user)<a id="bouton_bleu_head_dl_photos" class="btn btn-primary" href="{{ asset('create') }}">Télécharger les photos</a>@endif</h1>
+  	@if(Auth::user()->d_salarie_user)<a id="bouton_bleu_head_dl_photos" class="btn btn-primary" href="{{ asset('create') }}">Télécharger les photos</a>@endif
+  	@if(Auth::user()->d_bde_user) {!! link_to_route('gestion', 'Gerer les photos', null, ['class' => 'btn btn-primary']) !!} @endif
+  	</h1>
 	  	<hr class="mb-5">
         	  	@isset($deleted)
 		<div class="container-fluid" style="background: red;">

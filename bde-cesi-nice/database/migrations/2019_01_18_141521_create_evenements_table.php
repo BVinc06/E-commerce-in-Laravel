@@ -16,18 +16,19 @@ class CreateEvenementsTable extends Migration
         Schema::create('evenements', function (Blueprint $table) {
 
             $table->increments('id');
-            $table->string('nom_evenement');
-            $table->string('auteur_evenement');
-            $table->dateTime('date_debut_evenement');
-            $table->dateTime('date_fin_evenement');
-            $table->string('lieu_evenement');
-            $table->integer('duree_evenement');
-            $table->float('prix_evenement', 8, 2);
-            $table->boolean('payant_evenement');
-            $table->string('description_evenement');
-            $table->string('description_image_evenement');
-            $table->boolean('recurrence_evenement');
-            $table->boolean('idee_evenement');
+            $table->string('nom_evenement')->nullable();
+            $table->string('auteur_evenement')->nullable();
+            $table->dateTime('date_debut_evenement')->nullable();
+            $table->dateTime('date_fin_evenement')->nullable();
+            $table->string('lieu_evenement')->nullable();
+            $table->integer('duree_evenement')->nullable();
+            $table->float('prix_evenement', 8, 2)->nullable();
+            $table->boolean('payant_evenement')->nullable();
+            $table->string('description_evenement')->nullable();
+            $table->string('description_image_evenement')->nullable();
+            $table->string('url_photo')->nullable();
+            $table->boolean('recurrence_evenement')->nullable();
+            $table->boolean('idee_evenement')->nullable();
             $table->integer('user_id')->foreign('user_id')
                   ->references('id')
                   ->on('users')

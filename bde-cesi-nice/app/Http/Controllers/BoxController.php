@@ -52,7 +52,7 @@ class BoxController
         $ideas->prix_evenement = $request['prix'];
         $ideas->description_evenement = $request['description_evenement'];
         $ideas->idee_evenement = $request['idee_evenement'];
-
+        $ideas->user_id = Auth::id();
         
 
         $ideas->save();

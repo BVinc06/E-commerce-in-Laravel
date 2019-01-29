@@ -61,6 +61,7 @@
 					  	{!! Form::text('description_evenement', null, ['class' => 'form-control', 'placeholder' => 'Description']) !!}
 					  	{!! $errors->first('description_evenement', '<small class="help-block">:message</small>') !!}
 					</div>
+					<input class="eventcrea" type="hidden" name="idee_evenement" value="1"/>
 						{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
 					{!! Form::close() !!}
 
@@ -83,6 +84,7 @@
           <h6>Date fin : <input class="eventcrea" type="datetime-local" name="date_fin_evenement"required></h6>
           <h6>Description : <br><textarea class="descripEvent" type="text" name="description_evenement" required></textarea></h6>
           <h6>Evénement récurrent : <input class="eventcrea" type="radio" name="recurrent" value="1"></h6>
+			<input class="eventcrea" type="hidden" name="idee_evenement" value="1"/>
 			<input class="eventcrea" type="hidden" value="{{ Auth::user()->name }}&nbsp;{{ Auth::user()->firstname }}" name="auteur_evenement"/>
              {!! Form::submit('Ajouter l\'événement', ['class' => 'btn btn-primary ajoutEvent bouton_bleu']) !!}
           {!! Form::close() !!}

@@ -58,7 +58,7 @@ class EvenementsController
         $evenements->description_image_evenement = $request['description_image_evenement'];
         $evenements->idee_evenement = $request['idee_evenement'];
         $evenements->recurrence_evenement = $request['recurrent'];
-
+        $evenements->user_id =  Auth::id();
 
         $evenements->save();
 
@@ -101,7 +101,9 @@ class EvenementsController
         $evenements = Evenements::where('id',$id)->first();
 
         $evenements->nom_evenement = $request['nom_evenement'];
+        if(isset($request['auteur_evenement'])){
         $evenements->auteur_evenement = $request['auteur_evenement'];
+    }
         $evenements->date_debut_evenement = $request['date_debut_evenement'];
         $evenements->date_fin_evenement = $request['date_fin_evenement'];
         $evenements->lieu_evenement = $request['lieu_evenement'];
