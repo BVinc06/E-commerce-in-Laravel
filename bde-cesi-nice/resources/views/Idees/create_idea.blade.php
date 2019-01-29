@@ -38,19 +38,7 @@
 <div class="container">
 	<h1 class="my-4">Apporter une idée</h1>
 
-<<<<<<< HEAD
-	<div class="row">
-		<div class="col-md-7">
-			<h6>Titre : <input class="eventcrea" type="text" name="titre"/></h6>
-			<h6>Prix : <input class="eventcrea" type="number" name="prix"/>€</h6>
-			<h6>Lieu : <input class="eventcrea" type="text" name="lieu"/></h6>
-			<h6>Description : <br><textarea class="descripEvent" type="text" name="titre"></textarea></h6>
-			<a class="btn btn-primary ajoutEvent" href="#">Enregistrer l'idée</a>
-		</div>
-	</div>
-</div>
-@endsection
-=======
+
 <div class="row">
 		{!! Form::open(['route' => 'box.store']) !!}
 		<div class="col-md-7">
@@ -69,4 +57,3 @@
 	</div>
 </div>
 @endsection
->>>>>>> master
