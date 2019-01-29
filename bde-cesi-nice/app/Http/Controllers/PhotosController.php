@@ -7,6 +7,10 @@ use App\Http\Requests;
 use App\Photos;
 use App\Evenements;
 use App\User;
+<<<<<<< HEAD
+use App\Commentaires;
+=======
+>>>>>>> master
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 //use App\Http\Controllers\Controller;
@@ -67,7 +71,10 @@ class PhotosController
      */
     public function show($id)
     {
-        //
+        $photo = Photos::find($id);
+        $commentaires = Photos::find($id)->commentaires->sortByDesc('id');
+        
+        return view('Photos/picture_com')->withPhoto($photo)->withCommentaires($commentaires);
     }
 
     /**
@@ -101,7 +108,63 @@ class PhotosController
      */
     public function destroy($id)
     {
-        //
+        Photos::where('id',$id)->first()->delete();
+        Commentaires::where('photos_id', $id)->delete();    //On oublie pas de supprimer les commentaires liés à la photo
+        DB::table('like_photo_user')->where('photos_id', $id)->delete(); //Et on supprime les likes de cette photo
+        $photos = Photos::all();
+        return view('Photos/picture')->withPhotos($photos)->withCanDelete('')->withDeleted('Photo supprimé.');
+    }
+
+    public function imageUpload()
+        {
+        return view('Photos/imageUpload');
+    }
+
+    public function imageUploadPost()
+    {
+        request()->validate([
+
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+
+
+
+        $imageName = time().'.'.request()->image->getClientOriginalExtension();
+
+        request()->image->move(public_path('images'), $imageName);
+
+
+
+        return back()
+
+            ->with('success','L\'image a bien été téléchargée !')
+
+            ->with('image',$imageName);
+
+
+    }
+
+    public function like_photo($id_photo){
+                
+        //On récupère la liste des photos de l'événement déjà liké
+        $photo_already_like = DB::table('like_photo_user')->where('user_id', Auth::id())->where('photos_id', $id_photo)->exists();
+        
+        if(!$photo_already_like){
+            //On like une photo d'un événement auquel on a forcément participé, ce qui est vrai car on appuie sur le bouton associé à une photo appartenant à un événement participé
+            DB::table('like_photo_user')->insert(['photos_id' => $id_photo, 'user_id' => Auth::id()]);
+        }
+        else {
+            DB::table('like_photo_user')->where('photos_id', $id_photo)->where('user_id', Auth::id())->delete();
+        }
+        
+        return $this->index();
+    }
+
+    public function management_photo() {
+        $photos = Photos::all();
+        return view('Photos/picture')->withPhotos($photos)->withCanDelete('');
+
     }
 
     public function imageUpload()

@@ -32,6 +32,21 @@
 	<script src="{{ asset('vendor/daterangepicker/daterangepicker.js') }}"></script>
 	<script src="{{ asset('vendor/countdowntime/countdowntime.js') }}"></script>
 	<script src="{{ asset('js/mainCart.js') }}"></script>
+<<<<<<< HEAD
+  <script type="text/javascript">
+    document.getElementById('payer').setAttribute('href', '#');
+    
+    function check(){ 
+      if(document.getElementById('acceptance').checked){ 
+        document.getElementById('payer').setAttribute('href', 'http://localhost/Projet_Web_A2/bde-cesi-nice/public/checkout');        
+      }
+      else {
+        alert('Vous devez accepter les conditions générales de ventes avant de pouvoir procéder au paiement');
+      }
+    }
+  </script>
+=======
+>>>>>>> master
 @endsection
 
 @section('main')
@@ -80,7 +95,15 @@
           <div class="totals-value" id="cart-total">55</div>
         </div>
     </div>
+<<<<<<< HEAD
+
+    <div class="col-md-4">
+      <span><input type="checkbox" id="acceptance" required> Accepter les conditions générales de ventes</span>
+    </div> 
+    {!! link_to_route('shop.checkout', 'Payer', null, ['class' => 'checkout', 'id' => 'payer', 'onclick' => 'check()']) !!}
+=======
     <button class="checkout">Checkout</button>
+>>>>>>> master
      
   @endisset
 

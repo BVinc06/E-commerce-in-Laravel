@@ -54,6 +54,13 @@
     <!------------------->
 
     <h1>AUTH</h1>
+<<<<<<< HEAD
+    {{ Auth::user()->d_bde_user }}
+    @if(Auth::user()->d_bde_user)
+      BDE
+    @endif
+=======
+>>>>>>> master
 
   @endauth
 

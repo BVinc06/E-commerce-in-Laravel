@@ -67,7 +67,10 @@ class ImageUploadController
         $imgup->evenements_id = $request['evenements_id'];
        
         $imgup->save();
+<<<<<<< HEAD:bde-cesi-nice/app/Http/Controllers/ImageUploadController.php
+=======
         return view('home/imageUpload')->withPhotos ($imgup)->withUpdated('Photo ajouté');
+>>>>>>> master:bde-cesi-nice/app/Http/Controllers/ImageUploadController.php
     }
 
     /**

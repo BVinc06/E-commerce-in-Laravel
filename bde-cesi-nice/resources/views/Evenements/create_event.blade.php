@@ -38,6 +38,9 @@
 <div class="container">
 	 <h1 class="my-4">Créer un événement</h1>
 
+<<<<<<< HEAD
+<div class="row">
+=======
 @isset($evenement)
 {!! Form::model($evenement, ['route' => ['evenements.update', $evenement->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
 					<div class="form-group {!! $errors->has('nom_evenement') ? 'has-error' : '' !!}">
@@ -68,10 +71,21 @@
 @empty($evenement)
 {!! Form::open(['route' => 'evenements.store']) !!}
 	<div class="row">
+>>>>>>> master
       	<div class="col-md-7">
             <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
         </div>
         <div class="col-md-5">
+<<<<<<< HEAD
+          <h6>Titre : <input class="eventcrea" type="text" name="titre"/></h6>
+          <h6>Prix : <input class="eventcrea" type="number" name="prix"/>€</h6>
+          <h6>Lieu : <input class="eventcrea" type="text" name="lieu"/></h6>
+          <h6>Description : <br><textarea class="descripEvent" type="text" name="titre"></textarea></h6>
+          <a class="btn btn-primary ajoutEvent" href="#">Ajouter l'événement</a>
+        </div>
+      </div>
+	</div>
+=======
           <h6>Titre : <input class="eventcrea" type="text" name="nom_evenement" required></h6>
           <h6>Prix : <input class="eventcrea" type="number" name="prix_evenement"/>€</h6>
           <h6>Lieu : <input class="eventcrea" type="text" name="lieu_evenement"required></h6>
@@ -86,5 +100,6 @@
       </div>
 	</div>
 @endempty
+>>>>>>> master
 
 @endsection
