@@ -37,6 +37,7 @@ BDE CESI Nice Connexion
 
 @section('main')
 <div class="container">
+<<<<<<< HEAD
 	 <h1 class="my-4">Mon Compte <a class="btn btn-primary" style="margin-left: 40%" href="{{ asset('utilisateurs') }}">Gestion des utilisateurs</a></h1>
 	@isset($updated)
 		<div class="container-fluid" style="background: green;">
@@ -90,6 +91,59 @@ BDE CESI Nice Connexion
 					{!! Form::close() !!}
 		
 		
+=======
+	 <h1 class="my-4">Mon compte </h1>
+
+
+	<form action="{{ url('users') }}" method="POST">
+		{{ csrf_field() }}
+		<div class="row">
+			<div class="col-lg-2 col-md-12">
+				<label for="nom">Nom : </label>
+			</div>
+			<div class="col-lg-3 col-md-12">
+				<input type="text" name="nom" id="nom">
+			</div>
+			<div class="col-lg-2 col-md-12">
+				<label for="prenom">Prénom : </label>
+			</div>
+			<div class="col-lg-3 col-md-12">
+				<input type="text" name="prenom" id="prenom">
+			</div>
+			
+
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-12">
+				<label for="email">E-mail : </label>
+			</div>
+			<div class="col-lg-3 col-md-12">
+				<input type="text" name="email" id="email">
+			</div>
+			<div class="col-lg-2 col-md-12">
+				<label for="password">Mot de passe : </label>
+			</div>
+			<div class="col-lg-3 col-md-12">
+				<input type="password" name="password" id="password">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-12">
+				<label for="campus">Campus : </label>
+			</div>
+			<div class="col-lg-3 col-md-12">
+				<input type="text" name="campus" id="campus">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-10 col-md-12">
+
+			</div>
+			<div class="col-lg-2 col-md-4"> 
+				<input style="cursor: pointer;" type="submit" value="Enregistrer">
+			</div>
+		</div>
+>>>>>>> master
 
 	</form>
 </div>

@@ -46,10 +46,18 @@
           <h6>Titre : <input class="eventcrea" type="text" name="titre"/></h6>
           <h6>Prix : <input class="eventcrea" type="number" name="prix"/>€</h6>
           <h6>Quantité : <input class="eventcrea" type="text" name="lieu"/></h6>
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
           <h6>Description : <br><textarea class="descripEvent" type="text" name="titre"></textarea></h6>
           <a class="btn btn-primary ajoutEvent" href="#">Ajouter l'article</a>
         </div>
       </div>
 	</div>
 
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> master

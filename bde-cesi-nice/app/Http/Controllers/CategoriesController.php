@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 class CategoriesController
 {
+<<<<<<< HEAD
     /**
      * Display a listing of the resource.
      *
@@ -82,5 +83,11 @@ class CategoriesController
     public function destroy($id)
     {
         //
+=======
+    public function categories() {
+        $categories = Categories::all();
+
+        return view('view_name', compact('categories'));
+>>>>>>> master
     }
 }

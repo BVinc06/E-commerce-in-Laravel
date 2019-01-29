@@ -37,6 +37,7 @@
 @section('main')
 <div class="container">
 	 <h1 class="my-4">Modifier un article</h1>
+<<<<<<< HEAD
 	
 	@isset($updated)
 		<div class="container-fluid" style="background: green;">
@@ -80,4 +81,13 @@
 		</a>
 	</div>
 </div>
+=======
+	  <hr>
+
+<div class="row">
+      	
+      </div>
+	</div>
+
+>>>>>>> master
 @endsection
