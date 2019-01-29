@@ -254,3 +254,71 @@ section.pricing {
   }
 }
 /*-------------------------------------------*/
+
+/*------------------- Bouton STYLE ------------*/
+a.bouton_bleu_head{
+  float: right;
+  background-color: #5a86dd;
+}
+
+a.bouton_bleu_head:hover{
+  background-color: #ffc252;
+}
+
+a.bouton_bleu_gestion{
+  width: 250px;
+  margin-left: auto;
+    margin-right: auto;
+  background-color: #5a86dd;
+}
+
+a.bouton_bleu_gestion:hover{
+  background-color: #ffc252;
+}
+
+a#bouton_bleu_head_dl_photos{
+  margin-right: 5px;
+  float: right;
+  background-color: #5a86dd;
+}
+
+a#bouton_bleu_head_dl_photos:hover{
+  background-color: #ffc252;
+}
+
+a.bouton_bleu{
+  background-color: #5a86dd;
+}
+a.bouton_bleu:hover{
+  background-color: #ffc252;
+}
+
+input.bouton_bleu{
+  padding:5%;
+  border-radius: 10px;
+  background-color: #5a86dd;
+  color: white;
+}
+input.bouton_bleu:hover{
+  background-color: #ffc252;
+}
+/*-------------------------------------------*/
+
+/*------------------- CONTACT STYLE ------------*/
+div.containerContact{
+  margin-top: 20px;
+}
+
+label.contact{
+  margin-left: 20%;
+}
+input#send{
+  padding:2%;
+  margin-left: 20%;
+}
+
+@media (max-width: 575px) {
+  div#form {
+    margin-top: 30px;
+  }
+/*-------------------------------------------*/

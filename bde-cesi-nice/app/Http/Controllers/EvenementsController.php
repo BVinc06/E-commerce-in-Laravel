@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\User;
+use App\Evenements;
+use Carbon\Carbon;
 //use App\Http\Controllers\Controller;
 
 class EvenementsController
@@ -15,7 +18,8 @@ class EvenementsController
      */
     public function index()
     {
-        //
+        $evenements = Evenements::all()->where('idee_evenement', 1)->sortByDesc('date_fin_evenement');
+        return view('Evenements/evenements')->withEvenements($evenements);
     }
 
     /**
@@ -25,7 +29,7 @@ class EvenementsController
      */
     public function create()
     {
-        //
+        return view('Evenements/create_event');
     }
 
     /**
@@ -36,7 +40,23 @@ class EvenementsController
      */
     public function store(Request $request)
     {
-        //
+        $evenements = new Evenements;
+
+        $evenements->nom_evenement = $request['nom_evenement'];
+        $evenements->auteur_evenement = $request['auteur_evenement'];
+        $evenements->date_debut_evenement = $request['date_debut_evenement'];
+        $evenements->date_fin_evenement = $request['date_fin_evenement'];
+        $evenements->lieu_evenement = $request['lieu_evenement'];
+        $evenements->prix_evenement = $request['prix_evenement'];
+        $evenements->description_evenement = $request['description_evenement'];
+        $evenements->url_photo = $request['url_photo'];
+        $evenements->description_image_evenement = $request['description_image_evenement'];
+        $evenements->idee_evenement = $request['idee_evenement'];
+        $evenements->recurrence_evenement = $request['recurrent'];
+
+        $evenements->save();
+
+        return view('Evenements/create_event')->withEvenements ($evenements)->withUpdated('Événement créé');
     }
 
     /**
@@ -58,7 +78,9 @@ class EvenementsController
      */
     public function edit($id)
     {
-        //
+
+        $evenements = Evenements::findOrFail($id);
+        return view('Evenements/create_event')->withEvenements($evenements);
     }
 
     /**
@@ -70,7 +92,22 @@ class EvenementsController
      */
     public function update(Request $request, $id)
     {
-        //
+        $evenements = Evenements::where('id',$id)->first();
+
+        $evenements->nom_evenement = $request['nom_evenement'];
+        $evenements->auteur_evenement = $request['auteur_evenement'];
+        $evenements->date_debut_evenement = $request['date_debut_evenement'];
+        $evenements->date_fin_evenement = $request['date_fin_evenement'];
+        $evenements->lieu_evenement = $request['lieu_evenement'];
+        $evenements->prix_evenement = $request['prix_evenement'];
+        $evenements->description_evenement = $request['description_evenement'];
+        $evenements->url_photo = $request['url_photo'];
+        $evenements->description_image_evenement = $request['description_image_evenement'];
+        $evenements->idee_evenement = 1;
+
+        $evenements->save();
+
+        return view('Evenements/event')->withEvenements ($evenements)->withUpdated('Événement créé');
     }
 
     /**
@@ -82,5 +119,26 @@ class EvenementsController
     public function destroy($id)
     {
         //
+    }
+
+    public function export_users_registered($id)
+    {
+        $evenement = Evenements::findOrFail($id);
+        if(!empty($evenement)){
+            //On récupère la liste des utilisateurs inscrits
+            $users_inscrits =  Evenements::findOrFail($id)->participe_user;
+            
+            //Création du fichier CSV
+            $csv = \League\Csv\Writer::createFromFileObject(new \SplTempFileObject());
+
+            //Remplissage
+            $csv->insertOne('nom_evenement;nom_utilisateur;prenom_utilisateur');
+
+            foreach ($users_inscrits as $utilisateur) {
+                $csv->insertOne($evenement->nom_evenement . ';' . $utilisateur->name . ';' . $utilisateur->firstname);
+            }
+            //Return
+            $csv->output('export_' . $evenement->nom_evenement . '_' . time() . '.csv');
+        }
     }
 }
