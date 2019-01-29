@@ -23,7 +23,8 @@ class ProduitsTableSeeder extends Seeder {
 				'date_produit' => $date,
 				'quantite_produit' => $i,
 				'prix_produit' => $i + 9.99,
-				'categories_id' => $i
+				'categories_id' => $i,
+				'compteur_produit' => $i + 5
 			]);
 		}
 	}

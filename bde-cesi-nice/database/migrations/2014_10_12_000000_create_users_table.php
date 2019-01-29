@@ -16,9 +16,15 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('firstname');
+            $table->string('email', 50);
+            $table->unique('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('campus_user', ['', 'Sophia Antipolis','Aix-en-provence','Montpellier','Toulouse','Pau','Bordeaux','Grenoble','Lyon','Dijon','La Rochelle','Angoulême','Orléans','Le Mans', 'Saint-Nazaire', 'Nantes', 'Brest', 'Caen', 'Rouen', 'Paris Nanterre', 'Reims', 'Arras', 'Lille', 'Nancy', 'Strasbourg'])->default('');
+            $table->boolean('d_etudiant_user')->default(false);
+            $table->boolean('d_bde_user')->default(false);
+            $table->boolean('d_salarie_user')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

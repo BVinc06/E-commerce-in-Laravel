@@ -15,8 +15,8 @@ class Produits extends Model
 		return $this->belongsTo('App\Categories', 'categories_id');
 	}
 
-	public function utilisateurs()
+	public function users()
 	{
-		return $this->belongsToMany('App\Utilisateurs', 'achete_produit_utilisateur');
+		return $this->belongsToMany('App\User', 'achete_produit_user');
 	} 
 }

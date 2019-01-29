@@ -15,8 +15,13 @@ class Evenements extends Model
 	    return $this->hasMany('App\Photos');
 	}
 
-	public function utilisateur() 
+	public function user_auteur() 
 	{
-		return $this->belongsTo('App\Utilisateurs', 'utilisateurs_id');
+		return $this->belongsTo('App\User', 'user_id');
+	}
+
+	public function participe_user()
+	{
+		return $this->belongsToMany('App\User', 'participation_evenement_user');
 	}
 }
