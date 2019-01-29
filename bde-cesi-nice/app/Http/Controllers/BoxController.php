@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
+
 use App\Http\Requests;
 use App\User;
 use App\Evenements;
 use Illuminate\Support\Facades\Auth;
-=======
-use App\User;
-use App\Evenements;
->>>>>>> master
+
 
 class BoxController
 {
@@ -47,11 +44,8 @@ class BoxController
         $ideas = new Evenements;
 
         $ideas->nom_evenement = $request['titre'];
-<<<<<<< HEAD
-        $ideas->auteur_evenement = $request['auteur'];
-=======
+
         $ideas->auteur_evenement = $request['auteur_evenement'];
->>>>>>> master
         $ideas->date_debut_evenement = $request['date_debut'];
         $ideas->date_fin_evenement = $request['date_fin'];
         $ideas->lieu_evenement = $request['lieu_evenement'];
@@ -83,17 +77,12 @@ class BoxController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
-    public function edit($id)
-    {
-        //Doit retourner la vue pour modifier les champs si besoin sinon l'admin va directement valider l'idée.
-        // TODO : Remplir les champs avec les données remplis par l'auteur de l'idée.
-=======
+
    public function edit($id)
     {
         $ideas = Evenements::findOrFail($id);
         return view('Evenements/create_event')->withevenement($ideas);
->>>>>>> master
+
     }
 
     /**
@@ -105,11 +94,7 @@ class BoxController
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
-        //Va modifier l'évenement (donc l'idée) avec la requête envoyé par le formulaire de la vue retournée par edit().
-    }
 
-=======
         $ideas = Evenements::where('id',$id)->first();
         //On récupère les éléments des champs
         
@@ -122,7 +107,7 @@ class BoxController
     }
 
 
->>>>>>> master
+
     /**
      * Remove the specified resource from storage.
      *
@@ -133,7 +118,7 @@ class BoxController
     {
         //
     }
-<<<<<<< HEAD
+
 
     public function vote_evenement_by_user($idee_evenement){
         
@@ -142,6 +127,5 @@ class BoxController
         $user->vote_evenement()->toggle($idee_evenement);
         return $this->index();
     }
-=======
->>>>>>> master
+
 }
