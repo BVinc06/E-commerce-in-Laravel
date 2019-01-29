@@ -14,6 +14,8 @@ class EvenementsTableSeeder extends Seeder {
 	{
 		DB::table('evenements')->delete();
 
+		$y = 0;
+
 		for($i = 0; $i < 10; ++$i)
 		{
 			$date = $this->randDate();
@@ -29,9 +31,11 @@ class EvenementsTableSeeder extends Seeder {
 				'description_evenement' => 'Description_evenement:' . $i,
 				'description_image_evenement' => 'Image_description_evenement:' . $i,
 				'recurrence_evenement' => 1,
-				'idee_evenement' => 1,
-				'utilisateurs_id' => $i
+				'idee_evenement' => $y,
+				'user_id' => $i
 			]);
+			if($y == 0) $y = 1;
+			else $y = 0;
 		}
 	}
 }

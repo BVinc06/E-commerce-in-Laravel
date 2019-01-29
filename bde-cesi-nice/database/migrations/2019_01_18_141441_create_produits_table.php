@@ -20,7 +20,7 @@ class CreateProduitsTable extends Migration
             $table->dateTime('date_produit');
             $table->integer('quantite_produit');
             $table->integer('prix_produit');
-
+            $table->integer('compteur_produit')->default(0);
             $table->integer('categories_id')->foreign('categories_id')
                   ->references('id')
                   ->on('categories')
