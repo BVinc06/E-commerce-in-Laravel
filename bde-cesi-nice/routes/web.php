@@ -21,6 +21,10 @@ Route::get('/pagination', 'PaginationController@index');
 Route::get('pagination/fetch_data', 'PaginationController@fetch_data');
 Route::get('/filter', 'FilterController@index');
 Route::get('/filter/action', 'FilterController@action')->name('filter.action');
+Route::get('gestion',['as'=>'gestion','uses'=>'PhotosController@management_photo'])->middleware('auth');
+Route::get('like/{n}',['uses' => 'PhotosController@like_photo', 'as' => 'like'])->where('n', '[0-9]+')->middleware('auth');
+
+Route::get('box/vote/{n}', ['uses' => 'BoxController@vote_evenement_by_user', 'as' => 'box.vote'])->where('n', '[0-9]+')->middleware('auth');
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////    Liste les routes des différents contrôlleurs avec contrôle d'authentification   ////

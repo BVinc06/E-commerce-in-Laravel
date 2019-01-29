@@ -76,9 +76,9 @@ class ProduitsController
     public function edit($id)
     {
         $produit = Produits::findOrFail($id);
-        $categorie = Categories::findOrFail($produit->categories_id);
+        //$categorie = Categories::findOrFail($produit->categories_id);
 
-        return view('Boutique/Produits/edit_article')->withProduit($produit)->withCategorie($categorie);
+        return view('Boutique/Produits/edit_article')->withProduit($produit);
     }
 
     /**

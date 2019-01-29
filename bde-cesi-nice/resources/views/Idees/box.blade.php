@@ -52,7 +52,7 @@ BDE CESI Nice Boite à idées
 
 					<input class="eventcrea" type="hidden" value="0" name="idee_evenement"/>
 					@if(Auth::user()->d_bde_user){!! link_to_route('box.edit', 'Valider', [$idee->id], ['class' => 'btn btn-primary']) !!}@endif
-					{!! link_to_route('box.index', 'Liker', [$idee->id], ['class' => 'btn btn-primary']) !!} {{-- MODIFIER LA ROUTE --}}
+					{!! link_to_route('box.vote', 'Voter', [$idee->id], ['class' => 'btn btn-primary']) !!}
 
 
 				</div>
