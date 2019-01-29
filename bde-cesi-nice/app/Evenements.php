@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Notifiable;
 
 class Evenements extends Model
 {
@@ -15,13 +16,13 @@ class Evenements extends Model
 	    return $this->hasMany('App\Photos');
 	}
 
-	public function utilisateur_auteur() 
+	public function user_auteur() 
 	{
-		return $this->belongsTo('App\Utilisateurs', 'utilisateurs_id');
+		return $this->belongsTo('App\User', 'user_id');
 	}
 
-	public function participe_utilisateur()
+	public function participe_user()
 	{
-		return $this->belongsToMany('App\Utilisateurs', 'participation_evenement_utilisateur');
+		return $this->belongsToMany('App\User', 'participation_evenement_user');
 	}
 }

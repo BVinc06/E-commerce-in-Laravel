@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Produits;
 //use App\Http\Controllers\Controller;
 
 class ProduitsController
@@ -15,7 +16,8 @@ class ProduitsController
      */
     public function index()
     {
-        //
+        $produits = Produits::all();
+        return view('Boutique/Produits/shop')->withProduits($produits);
     }
 
     /**
@@ -25,7 +27,7 @@ class ProduitsController
      */
     public function create()
     {
-        //
+        return view('Boutique/Produits/create_article');
     }
 
     /**
@@ -36,7 +38,16 @@ class ProduitsController
      */
     public function store(Request $request)
     {
-        //
+        $produits = new Produits;
+
+        $produits->nom_produit = $request['titre'];
+        $produits->description_produit = $request['description_produit'];
+        $produits->quantite_produit = $request['quantite_produit'];
+        $produits->prix_produit = $request['prix_produit'];
+
+        $produits->save();
+
+        return view('Boutique/Produits/create_article')->withProduits ($produits)->withUpdated('Article créé');
     }
 
     /**

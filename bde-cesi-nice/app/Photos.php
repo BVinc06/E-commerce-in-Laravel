@@ -20,8 +20,8 @@ class Photos extends Model
 		return $this->belongsTo('App\Evenements', 'evenements_id');
 	}
 
-	public function utilisateurs()
+	public function users()
 	{
-		return $this->belongsToMany('App\Utilisateurs' , 'like_photo_utilisateur');
+		return $this->belongsToMany('App\User' , 'like_photo_user');
 	} 
 }

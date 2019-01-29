@@ -15,7 +15,7 @@ class PhotosController
      */
     public function index()
     {
-        //
+        $photos = Photos::all();
     }
 
     /**
@@ -36,7 +36,13 @@ class PhotosController
      */
     public function store(Request $request)
     {
-        //
+        $imgup = new Photos;
+
+        $imgup->nom_photo = $request['nom_photo'];
+        $imgup->url_photo = $request['url_photo'];
+        $imgup->evenements_id = $request['evenements_id'];
+       
+        $imgup->save();
     }
 
     /**
@@ -82,5 +88,35 @@ class PhotosController
     public function destroy($id)
     {
         //
+    }
+
+    public function imageUpload()
+        {
+        return view('Photos/imageUpload');
+    }
+
+    public function imageUploadPost()
+    {
+        request()->validate([
+
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+
+
+
+        $imageName = time().'.'.request()->image->getClientOriginalExtension();
+
+        request()->image->move(public_path('images'), $imageName);
+
+
+
+        return back()
+
+            ->with('success','L\'image a bien été téléchargée !')
+
+            ->with('image',$imageName);
+
+
     }
 }
