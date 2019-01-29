@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
+<<<<<<< HEAD
+use Illuminate\Support\Facades\Auth;
+
+=======
+>>>>>>> master
 
 class UserController extends Controller
 {
@@ -75,7 +80,10 @@ class UserController extends Controller
     {
         $utilisateur = User::findOrFail($id);
         return view('Utilisateurs/utilisateur_show')->withUtilisateur($utilisateur);
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
     }
 
     /**
@@ -88,6 +96,17 @@ class UserController extends Controller
     {
         $utilisateur = User::findOrFail($id);
         return view('Utilisateurs/utilisateur_edit')->withUtilisateur($utilisateur);
+<<<<<<< HEAD
+     
+    }
+     public function edituser()
+    {
+        $id = Auth::id();
+        $utilisateur = User::findOrFail($id);
+        
+         return view('MonCompte/compte')->withUtilisateur($utilisateur);
+=======
+>>>>>>> master
     }
 
     /**
@@ -104,7 +123,20 @@ class UserController extends Controller
         
         $utilisateur->name = $request['name'];
         $utilisateur->email = $request['email'];
+<<<<<<< HEAD
+
+        if(isset($request['firstname'])){
+        $utilisateur->firstname = $request['firstname'];
+        }
+
+        if(isset($request['password'])){ 
+        $utilisateur->password = $request['password'];
+        }
+       
+
+=======
         
+>>>>>>> master
         if(isset($request['d_bde_user'])){
             $utilisateur->d_bde_user = 1;
         } else {
@@ -123,7 +155,12 @@ class UserController extends Controller
 
         $utilisateur->save();
 
+<<<<<<< HEAD
+           return view('MonCompte/compte')->withUtilisateur($utilisateur)->withUpdated('Utilisateur modifié.');
+
+=======
         return view('Utilisateurs/utilisateur_edit')->withUtilisateur($utilisateur)->withUpdated('Utilisateur modifié.');
+>>>>>>> master
     }
 
     /**

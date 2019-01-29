@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+<<<<<<< HEAD
+=======
 use App\Photos;
 use App\User;
 use Carbon\Carbon;
 use App\Commentaires;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+>>>>>>> master
 //use App\Http\Controllers\Controller;
 
 class CommentairesController
@@ -19,7 +22,10 @@ class CommentairesController
      *
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
     public function index()
     {
         //
@@ -30,9 +36,15 @@ class CommentairesController
      *
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
+    public function create()
+    {
+        //
+=======
     public function create_com_photo($id)
     {
         return view('Photos/picture_com_add')->withCreate('')->withId($id);
+>>>>>>> master
     }
 
     /**
@@ -43,6 +55,9 @@ class CommentairesController
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
+        //
+=======
         $commentaire = new Commentaires;
 
         $commentaire->description_commentaire = $request['description_commentaire'];
@@ -53,6 +68,7 @@ class CommentairesController
 
         return $this->show($request['photos_id'], 'Commentaire ajouté !');
 
+>>>>>>> master
     }
 
     /**
@@ -61,11 +77,17 @@ class CommentairesController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+<<<<<<< HEAD
+    public function show($id)
+    {
+        //
+=======
     public function show($id, $sting)
     {
         $photo = Photos::find($id);
         $commentaires = Photos::find($id)->commentaires->sortByDesc('id');
         return view('Photos/picture_com')->withPhoto($photo)->withCommentaires($commentaires)->withCommentairesAdd($sting);
+>>>>>>> master
     }
 
     /**

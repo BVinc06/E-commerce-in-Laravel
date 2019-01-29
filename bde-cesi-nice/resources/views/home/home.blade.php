@@ -39,7 +39,11 @@
           <img class="d-block w-100" src="{{ asset('image/slide2.png') }}" alt="Second slide">
         </div>
         <div class="carousel-item">
+<<<<<<< HEAD
+          <text>hgdrh <alt="Third slide">
+=======
           <img class="d-block w-100" src="{{ asset('image/slide3.png') }}" alt="Third slide">
+>>>>>>> master
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -52,6 +56,27 @@
       </a>
     </div>
     <!------------------->
+<<<<<<< HEAD
+
+    <h1>AUTH</h1>
+
+  @endauth
+
+  @guest
+  
+    @section('title')
+      Accueil
+    @endsection
+
+    @section('header')
+     @include('../default/mainHeader')
+    @endsection
+
+    @section('footer')
+     @include('../default/mainFooter')
+    @endsection
+
+=======
 
     <h1>AUTH</h1>
 
@@ -72,6 +97,7 @@
      @include('../default/mainFooter')
     @endsection
 
+>>>>>>> master
      <!-- SLIDES -->
      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -100,4 +126,8 @@
 
   @endguest
 
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> master

@@ -7,8 +7,11 @@ use App\Http\Requests;
 use App\Photos;
 use App\Evenements;
 use App\User;
+<<<<<<< HEAD
+=======
 use App\Commentaires;
 
+>>>>>>> master
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 //use App\Http\Controllers\Controller;
@@ -69,10 +72,14 @@ class PhotosController
      */
     public function show($id)
     {
+<<<<<<< HEAD
+        //
+=======
         $photo = Photos::find($id);
         $commentaires = Photos::find($id)->commentaires->sortByDesc('id');
         
         return view('Photos/picture_com')->withPhoto($photo)->withCommentaires($commentaires);
+>>>>>>> master
     }
 
     /**
@@ -106,6 +113,9 @@ class PhotosController
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
+        //
+=======
         Photos::where('id',$id)->first()->delete();
         Commentaires::where('photos_id', $id)->delete();    //On oublie pas de supprimer les commentaires liés à la photo
         DB::table('like_photo_user')->where('photos_id', $id)->delete(); //Et on supprime les likes de cette photo
@@ -137,6 +147,7 @@ class PhotosController
         $photos = Photos::all();
         return view('Photos/picture')->withPhotos($photos)->withCanDelete('');
 
+>>>>>>> master
     }
 
     public function imageUpload()
