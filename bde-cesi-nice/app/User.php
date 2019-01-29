@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'firstname','email', 'password', 'campus_utilisateur',
     ];
 
     /**
@@ -27,4 +27,31 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $table = 'users';
+
+    public function propose_evenement()
+    {
+        return $this->hasMany('App\Evenements');
+    }
+
+    public function vote_evenement()
+    {
+        return $this->belongsToMany('App\Evenements', 'vote_evenement_user');
+    }
+
+    public function participe_evenement()
+    {
+        return $this->belongsToMany('App\Evenements', 'participation_evenement_user');
+    }
+
+    public function produits()
+    {
+        return $this->belongsToMany('App\Produits', 'achete_produit_user');
+    }
+
+    public function photos()
+    {
+        return $this->belongsToMany('App\Photos' , 'like_photo_user');
+    }
 }
