@@ -50,7 +50,9 @@ class EvenementsController
     {
         $evenements = new Evenements;
 
-        $contact = User($email)
+        $contact = User($email);
+
+        
 
 
 
@@ -70,9 +72,9 @@ class EvenementsController
 
         $evenements->save();
 
-        $contact->notify(new NotificationAuteurIdee)
+        $contact->notify(new NotificationAuteurIdee);
 
-        return view('Evenements/create_event')->withEvenements ($evenements)->withUpdated('Événement créé');
+        return view('Evenements/create_event')->withEvenements($evenements)->withUpdated('Événement créé');
     }
 
     /**
