@@ -48,7 +48,7 @@
 		      <h3>Événement : {{ $evenement->nom_evenement }}</h3>
 		      <h5>Lieu : {{ $evenement->lieu_evenement }} - Prix : {{ $evenement->prix_evenement }}</h5>
 		      <p>{{ $evenement->description_evenement }}</p>
-		      <a class="btn btn-primary" href="#">S'inscrire</a>
+		      {!! link_to_route('evenements.participation', 'S\'inscrire', [$evenement->id], ['class' => 'btn btn-primary']) !!}
 		      {!! link_to_route('export', 'Voir la liste des inscrits', [$evenement->id], ['class' => 'btn btn-primary']) !!}
 		    </div>
 		  </div>

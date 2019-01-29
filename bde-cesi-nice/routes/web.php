@@ -11,6 +11,7 @@
 |
 */
 
+
 use App\User;
 
 use App\Notifications\NotificationAuteurIdee;
@@ -54,6 +55,9 @@ Route::get('/event',function(){
 //Boite à idées
 Route::resource('box', 'BoxController')->middleware('auth');
 
+Route::get('box/vote/{n}', ['uses' => 'BoxController@vote_evenement_by_user', 'as' => 'box.vote'])->where('n', '[0-9]+')->middleware('auth');
+
+
 Route::get('/create_idea',function(){
     return View::make('Idees/create_idea');
 })->middleware('auth');
@@ -75,13 +79,12 @@ Route::get('/Boutique/Panier', function(){
 });
 
 
-
 //Photos
 Route::resource('photos', 'PhotosController')->middleware('auth');
 Route::resource('commentaires', 'CommentairesController')->middleware('auth');
-
-Route::get('image-upload',['as'=>'image.upload','uses'=>'ImageUploadController@imageUpload']);
-Route::post('image-upload',['as'=>'image.upload.post','uses'=>'ImageUploadController@imageUploadPost']);
+Route::get('gestion',['as'=>'gestion','uses'=>'PhotosController@management_photo'])->middleware('auth');
+Route::get('image-upload',['as'=>'image.upload','uses'=>'ImageUploadController@imageUpload'])->middleware('auth');
+Route::post('image-upload',['as'=>'image.upload.post','uses'=>'ImageUploadController@imageUploadPost'])->middleware('auth');
 
 Route::get('/ajout_photos',function(){
     return View::make('Photos/ajout_photos');
@@ -96,10 +99,19 @@ Route::get('/picture',function(){
 })->middleware('auth');
 
 
+Route::get('like/{n}',['uses' => 'PhotosController@like_photo', 'as' => 'like'])->where('n', '[0-9]+')->middleware('auth');
+Route::get('photos/add_commentaire/{n}',['as'=>'add_commentaire','uses'=>'CommentairesController@create_com_photo'])->where('n', '[0-9]+')->middleware('auth');
 
 //Boutique
 Route::resource('shop', 'ProduitsController')->middleware('auth');
 Route::resource('categories', 'CategoriesController')->middleware('auth');
+
+Route::get('shop/add/{n}', ['uses' => 'ProduitsController@add_to_cart', 'as' => 'shop.add'])->where('n', '[0-9]+')->middleware('auth');
+Route::get('cart/delete/{n}', ['uses' => 'ProduitsController@delete_to_cart', 'as' => 'shop.delete'])->where('n', '[0-9]+')->middleware('auth');
+
+Route::get('cart','ProduitsController@cart')->middleware('auth');
+
+Route::get('checkout', ['uses' => 'ProduitsController@checkout', 'as' => 'shop.checkout'])->middleware('auth');
 
 Route::get('/create_article',function(){
     return View::make('Boutique/Produits/create_article');
@@ -115,18 +127,10 @@ Route::get('/delete_article',function(){
     return View::make('Boutique/Produits/delete_article');
 });
 
-Route::get('/cart',function(){
-    return View::make('Boutique/Panier/cart');
-})->middleware('auth');
-
 //Divers
-/*Route::get('/compte',function(){
+Route::get('/compte',function(){
     return View::make('MonCompte/compte');
-})->middleware('auth');*/
-
-Route::get('contact', 'ContactController@view');
-Route::post('contact', 'ContactController@email');
-
+})->middleware('auth');
 
 Route::get('/contact',function(){
     return View::make('Contact/contact');
@@ -134,6 +138,7 @@ Route::get('/contact',function(){
 
 Route::get('/login2',function(){
     return View::make('Home/login_deprecated');
+
 });
 
 Route::get('/signin2',function(){
@@ -153,6 +158,9 @@ Route::get('/forget2',function(){
 });
 */
 
+Route::get('/forget2',function(){
+    return View::make('Home/forget_deprecated');
+});
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////

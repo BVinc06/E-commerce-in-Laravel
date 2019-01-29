@@ -36,21 +36,28 @@
 
 @section('main')
 	<div class="container">
-  		<h1 class="display-4 text-center text-lg-left mt-4 mb-0">Galerie Photos <a class="btn btn-primary" href="{{ asset('ajout_photos') }}">Ajouter des photos</a></h1>
+  		<h1 class="display-4 text-center text-lg-left mt-4 mb-0">Galerie Photos <a class="btn btn-primary" href="{{ asset('ajout_photos') }}">Ajouter des photos</a> @if(Auth::user()->d_bde_user) {!! link_to_route('gestion', 'Gerer les photos', null, ['class' => 'btn btn-primary']) !!} @endif</h1>
 	  	<hr class="mb-5">
+	  	@isset($deleted)
+		<div class="container-fluid" style="background: red;">
+			{{ $deleted }}
+		</div>
+		@endisset
 	  	<div class="row text-center text-lg-left">
-		  	<div class="col-lg-3 col-md-4 col-6">
-		            <img class="img-fluid img-thumbnail" src="{{ asset('image/slide1.png') }}" alt="">
-		    </div>
-		   <div class="col-lg-3 col-md-4 col-6">
-		            <img class="img-fluid img-thumbnail" src="{{ asset('image/slide2.png') }}" alt="">
-		    </div>
-		    <div class="col-lg-3 col-md-4 col-6">
-		            <img class="img-fluid img-thumbnail" src="{{ asset('image/slide3.png') }}" alt="">
-		    </div>
-		    <div class="col-lg-3 col-md-4 col-6">
-		            <img class="img-fluid img-thumbnail" src="{{ asset('image/logo_bde.png') }}" alt="">
-		    </div>
+	  		@foreach($photos as $photo)
+	  			@isset($photo->url_photo)
+			  		<div class="col-lg-3 col-md-4 col-6">
+			  			<img class="img-fluid img-thumbnail" src="{{ asset('images/'.$photo->url_photo) }}" alt="">
+						{!! link_to_route('like', 'Like', [$photo->id], ['class' => 'btn btn-primary']) !!}
+						{!! link_to_route('photos.show', 'Voir les commentaires', [$photo->id], ['class' => 'btn btn-primary']) !!}
+						@isset($canDelete) 
+							{!! Form::open(['method' => 'DELETE', 'route' => ['photos.destroy', $photo->id]]) !!}
+							{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cette photo ?\')']) !!}
+							{!! Form::close() !!}
+						@endisset
+			    	</div>
+		    	@endisset
+	    	@endforeach
 	    </div>
 	</div>
 @endsection

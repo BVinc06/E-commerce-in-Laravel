@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\Http\Requests;
 use App\User;
 use App\Evenements;
+use Illuminate\Support\Facades\Auth;
+
 
 class BoxController
 {
@@ -99,5 +103,13 @@ class BoxController
     public function destroy($id)
     {
         //
+    }
+
+    public function vote_evenement_by_user($idee_evenement){
+        
+        //Ajout ou enleve l'enregistrement si on reclique dessus
+        $user = User::find(Auth::id());
+        $user->vote_evenement()->toggle($idee_evenement);
+        return $this->index();
     }
 }

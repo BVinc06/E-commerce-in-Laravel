@@ -1,20 +1,19 @@
-@extends('../default/default')
+@extends('../../default/default')
 
 @section('title')
-		BDE CESI Nice Ajout photos
+		BDE CESI Nice Panier
 	@endsection
 
 	@section('header')
-  @include('../default/mainHeader')
+  @include('../../default/mainHeader')
 @endsection
 
 @section('footer')
-  @include('../default/mainFooter')
+  @include('../../default/mainFooter')
 @endsection
 
 @section('moreCSS')
-<link rel="stylesheet" type="text/css" href="{{ asset('css/headerStyle.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('css/footerStyle.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/mainShoppingCart.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/mainStyle.css') }}">
 	<link rel="icon" type="image/png" href="{{ asset('image/icons/favicon.ico') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
@@ -32,20 +31,27 @@
 	<script src="{{ asset('vendor/daterangepicker/moment.min.js') }}"></script>
 	<script src="{{ asset('vendor/daterangepicker/daterangepicker.js') }}"></script>
 	<script src="{{ asset('vendor/countdowntime/countdowntime.js') }}"></script>
-
-<script type="text/javascript" src="{{ asset('jquery.js') }}"></script>
+	<script src="{{ asset('js/mainCart.js') }}"></script>
 @endsection
 
 @section('main')
+
 <div class="container">
-  <h1 class="display-4 text-center text-lg-left mt-4 mb-0">Ajout de photos</h1>
-  <hr class="mb-5">
+	<br>
+	<h1>Procédure de paiement</h1>
+  <h2>API PAYPAL</h2>
+  <form class="w3-container w3-display-middle w3-card-4 " method="POST" id="payment-form"  action="/payment/add-funds/paypal">
+  {{ csrf_field() }}
+  <h2 class="w3-text-blue">Payment Form</h2>
 
-<div id="wrapper">
- <input type="file">
+  <p>Demo PayPal form - Integrating paypal in laravel</p>
+  <p>    
+  	<div>
+  		<button class="btn btn-primary">Pay with PayPal</button> {!! link_to_route('shop.index', 'CB', null, ['class' => 'btn btn-primary']) !!}
+	</div>
+  </p>
+  
+</form>
 </div>
-
-</div>
-
-
+	
 @endsection

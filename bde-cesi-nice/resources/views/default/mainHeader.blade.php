@@ -4,7 +4,7 @@
       <li class="nav-li active-nav"><a href="{{ asset('home') }}"><i class="fas fa-home">&nbsp;</i> Accueil</a></li>
       <li class="nav-li"><a href="{{ asset('evenements') }}"><i class="far fa-calendar-alt">&nbsp;</i>Événements</a></li>
       <li class="nav-li"><a href="{{ asset('box') }}"><i class="fas fa-box">&nbsp;</i>Boite à idées</a></li>
-      <li class="nav-li"><a href="{{ asset('picture') }}"><i class="far fa-image">&nbsp;</i>Photos</a></li>
+      <li class="nav-li"><a href="{{ asset('photos') }}"><i class="far fa-image">&nbsp;</i>Photos</a></li>
       <img id="logoHeader" alt="LogoBDE" src="{{ asset('image/logo_bde.png') }}"/>
       <li class="nav-li"><a href="{{ asset('compte') }}"><i class="fas fa-user">&nbsp;</i>Mon compte</a></li>
       <li class="nav-li"><a href="{{ asset('shop') }}"><i class="fas fa-shopping-basket">&nbsp;</i>Boutique</a></li>

@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\User;
 use App\Evenements;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 //use App\Http\Controllers\Controller;
 
 use App\Notifications\NotificationAuteurIdee;
@@ -43,6 +45,7 @@ class EvenementsController
     public function store(Request $request)
     {
         $evenements = new Evenements;
+
         $contact = User($email)
 
         $evenements->nom_evenement = $request['titre'];
@@ -55,6 +58,7 @@ class EvenementsController
         $evenements->nom_photo = $request['nom_photo'];
         $evenements->description_image_evenement = $request['description_image_evenement'];
         $evenements->idee_evenement = $request['idee_evenement'];
+
         $evenements->save();
 
         $contact->notify(new NotificationAuteurIdee)
@@ -126,5 +130,16 @@ class EvenementsController
             //Return
             $csv->output('export_' . $evenement->nom_evenement . '_' . time() . '.csv');
         }
+    }
+
+    public function participation_evenement_by_user($evenement){
+        
+        //Ajout ou enleve l'enregistrement si on reclique dessus
+        $user = User::find(Auth::id());
+        $test_evite_doublon_ou_desincription = $user->participe_evenement()->toggle($evenement);
+        if($test_evite_doublon_ou_desincription['attached'] == null){
+            $test_evite_doublon_ou_desincription = $user->participe_evenement()->toggle($evenement);
+        }
+        return $this->index();
     }
 }

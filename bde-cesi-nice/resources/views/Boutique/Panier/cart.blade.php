@@ -32,6 +32,18 @@
 	<script src="{{ asset('vendor/daterangepicker/daterangepicker.js') }}"></script>
 	<script src="{{ asset('vendor/countdowntime/countdowntime.js') }}"></script>
 	<script src="{{ asset('js/mainCart.js') }}"></script>
+  <script type="text/javascript">
+    document.getElementById('payer').setAttribute('href', '#');
+    
+    function check(){ 
+      if(document.getElementById('acceptance').checked){ 
+        document.getElementById('payer').setAttribute('href', 'http://localhost/Projet_Web_A2/bde-cesi-nice/public/checkout');        
+      }
+      else {
+        alert('Vous devez accepter les conditions générales de ventes avant de pouvoir procéder au paiement');
+      }
+    }
+  </script>
 @endsection
 
 @section('main')
@@ -43,7 +55,6 @@
 <div class="shopping-cart">
 
   <div class="column-labels">
-    <label class="product-image">Image</label>
     <label class="product-details">Produit</label>
     <label class="product-price">Prix</label>
     <label class="product-quantity">Quantité</label>
@@ -51,56 +62,45 @@
     <label class="product-line-price">Total</label>
   </div>
 
-  <div class="product">
-    <div class="product-image">
-      <img src="{{ asset('image/article1.jpg') }}">
-    </div>
-    <div class="product-details">
-      <div class="product-title">Tasse à café</div>
-      <p class="product-description">Marre d'être fatigué en cours ? De ne pas réussir à suivre les workshop ? De pas avoir la force de venir aux afterworks ?</p>
-    </div>
-    <div class="product-price">15</div>
-    <div class="product-quantity">
-      <input type="number" value="2" min="1">
-    </div>
-    <div class="product-removal">
-      <button class="remove-product">
-        Supprimer
-      </button>
-    </div>
-    <div class="product-line-price">30</div>
-  </div>
-
-  <div class="product">
-    <div class="product-image">
-      <img src="{{ asset('image/article2.png') }}">
-    </div>
-    <div class="product-details">
-      <div class="product-title">PULL BDE</div>
-      <p class="product-description">Marre d'avoir froid et de ne pas vouloir venir en cours sans votre couette ?</p>
-    </div>
-    <div class="product-price">25</div>
-    <div class="product-quantity">
-      <input type="number" value="1" min="1">
-    </div>
-    <div class="product-removal">
-      <button class="remove-product">
-        Supprimer
-      </button>
-    </div>
-    <div class="product-line-price">25</div>
-  </div>
-
-  <div class="totals">
-    <div class="totals-item totals-item-total">
-      <label>Total</label>
-      <div class="totals-value" id="cart-total">55</div>
-    </div>
-  </div>
+  @isset($noProduct)
+      <h4>
+        {{ $noProduct }}
+      </h4>
+  @endisset
       
-      <button class="checkout">Checkout</button>
+  @isset($produits)
+    @foreach($produits as $produit)
+      <div class="product">
+        <div class="product-details">
+          <div class="product-title">{{ $produit->nom_produit }}</div>
+          <p class="product-description">{{ $produit->description_produit }}</p>
+        </div>
+        <div class="product-price">{{ $produit->prix_produit }}</div>
+        <div class="product-quantity">
+          <input type="number" value="1" min="0" max="{{ $produit->quantite_produit }}">
+        </div>
+        <div class="product-removal">
+          {!! link_to_route('shop.delete', 'Supprimer', [$produit->id], ['class' => 'remove-product']) !!}
+        </div>
+        <div class="product-line-price">{{ $produit->prix_produit }}</div>
+      </div>
+    @endforeach
 
-</div>
+    <div class="totals">
+        <div class="totals-item totals-item-total">
+          <label>Total</label>
+          <div class="totals-value" id="cart-total">55</div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+      <span><input type="checkbox" id="acceptance" required> Accepter les conditions générales de ventes</span>
+    </div> 
+    {!! link_to_route('shop.checkout', 'Payer', null, ['class' => 'checkout', 'id' => 'payer', 'onclick' => 'check()']) !!}
+     
+  @endisset
+
+ </div>
 </div>
 	
 

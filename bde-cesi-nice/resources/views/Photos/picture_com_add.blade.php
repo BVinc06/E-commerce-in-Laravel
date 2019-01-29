@@ -1,7 +1,7 @@
 @extends('../default/default')
 
 @section('title')
-		BDE CESI Nice Boutique
+		BDE CESI Nice Galerie Photos
 	@endsection
 
 	@section('header')
@@ -35,38 +35,32 @@
 @endsection
 
 @section('main')
+	<div class="container">
+  		<h1 class="display-4 text-center text-lg-left mt-4 mb-0">Galerie Photos <a class="btn btn-primary" href="{{ asset('ajout_photos') }}">Ajouter des photos</a></h1>
+	  	<hr class="mb-5">
+  	
+	  	@isset($commentairesAdd)
+    		<div class="container-fluid" style="background: green;">
+      			{{ $commentairesAdd }}
+			</div>
+	  	<hr class="mb-5">
+	  	@endisset
 
-<div class="container">
-	 <h1 class="my-4">Boutique <a class="btn btn-primary" href="{{ asset('create_article') }}">Ajouter un article</a></h1>
+	  	@isset($create)
+	  	{!! Form::open(['route' => 'commentaires.store', 'class' => 'form-horizontal panel']) !!}	
+					<div class="form-group {!! $errors->has('description_commentaire') ? 'has-error' : '' !!}">
+						{!! Form::text('description_commentaire', null, ['class' => 'form-control', 'placeholder' => 'Commentaire']) !!}
+						{!! $errors->first('description_commentaire', '<small class="help-block">:message</small>') !!}
+					</div>
 
-	 <!-- SLIDES -->
-   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="{{ asset('image/article1.jpg') }}" alt="First slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="{{ asset('image/article2.png') }}" alt="Second slide">
-      </div>
-      <div class="carousel-item">
-        <img class="d-block w-100" src="{{ asset('image/slide1.png') }}" alt="Third slide">
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  <!------------------->
-  <br>
+					<div style="display: none;">
+						{!! Form::text('photos_id', $id, ['class' => 'form-control']) !!}
+					</div>
 
-	
-	@include('../default/shop')
+					{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
+					{!! Form::close() !!}
+	  	<hr class="mb-5">
+	  	@endisset
 
 	</div>
-
 @endsection

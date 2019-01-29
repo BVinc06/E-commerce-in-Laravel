@@ -55,6 +55,11 @@
 
     <h1>AUTH</h1>
 
+    {{ Auth::user()->d_bde_user }}
+    @if(Auth::user()->d_bde_user)
+      BDE
+    @endif
+
   @endauth
 
   @guest

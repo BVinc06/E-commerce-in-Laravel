@@ -58,6 +58,9 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <p id="passwordHelpBlock" class="form-text text-muted">
+                                    Your password must be more than 6 characters long, should contain at-least 1 Uppercase, 1 Lowercase and 1 Numeric.
+                                </p>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
@@ -71,8 +74,13 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="passwordconfirm" type="password" class="form-control" name="password_confirmation" required>
+
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
+                            
+                            <div class="col-md-4">
+                                <span><input type="checkbox" onClick="this.disabled = true;" required> Accepter les mentions légales</span>
+                            </div> 
                         </div>
 
                         <div class="form-group row mb-0">
@@ -88,9 +96,5 @@
         </div>
     </div>
 </div>
-
-<script type="javascript" src="{{ asset('js/index.php/ValidationScript.js')}}"></script>
-
-<script type="javascript" src="{{ asset('js/index.php/jquery.js')}}"></script>
 
 @endsection

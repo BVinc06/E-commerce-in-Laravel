@@ -46,7 +46,7 @@ BDE CESI Nice Boite à idées
 					<h4 class="card-title">Titre : {{ $idee->nom_evenement }}</h4>
 					<p class="card-text">Description : {{ $idee->description_evenement }}</p>
 					{!! link_to_route('box.edit', 'Valider', [$idee->id], ['class' => 'btn btn-primary']) !!}
-					{!! link_to_route('box.index', 'Liker', [$idee->id], ['class' => 'btn btn-primary']) !!} {{-- MODIFIER LA ROUTE --}}
+					{!! link_to_route('box.vote', 'Voter', [$idee->id], ['class' => 'btn btn-primary']) !!}
 				</div>
 			</div>
 		</div>

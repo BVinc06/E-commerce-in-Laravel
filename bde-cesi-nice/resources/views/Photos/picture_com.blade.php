@@ -1,7 +1,7 @@
 @extends('../default/default')
 
 @section('title')
-		BDE CESI Nice Créer un événement
+		BDE CESI Nice Galerie Photos
 	@endsection
 
 	@section('header')
@@ -35,21 +35,32 @@
 @endsection
 
 @section('main')
-<div class="container">
-	 <h1 class="my-4">Créer un événement</h1>
+	<div class="container">
+  		<h1 class="display-4 text-center text-lg-left mt-4 mb-0">Galerie Photos <a class="btn btn-primary" href="{{ asset('ajout_photos') }}">Ajouter des photos</a></h1>
+	  	<hr class="mb-5">
+	  	<h3>{{ $photo->nom_photo }}</h3>
+	  	<div>
+	  		<img class="img-fluid img-thumbnail" src="{{ asset('images/'.$photo->url_photo) }}" alt="{{ $photo->nom_photo }}">
+	  	</div>
+	  	{!! link_to_route('add_commentaire', 'Ajouter un commentaire', [$photo->id], ['class' => 'btn btn-primary']) !!}
+	  	
+	  	<hr class="mb-5">
+	  	
+	  	@isset($commentairesAdd)
+    		<div class="container-fluid" style="background: green;">
+      			{{ $commentairesAdd }}
+			</div>
+	  	<hr class="mb-5">
+	  	@endisset
 
-<div class="row">
-      	<div class="col-md-7">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
-        </div>
-        <div class="col-md-5">
-          <h6>Titre : <input class="eventcrea" type="text" name="titre"/></h6>
-          <h6>Prix : <input class="eventcrea" type="number" name="prix"/>€</h6>
-          <h6>Lieu : <input class="eventcrea" type="text" name="lieu"/></h6>
-          <h6>Description : <br><textarea class="descripEvent" type="text" name="titre"></textarea></h6>
-          <a class="btn btn-primary ajoutEvent" href="#">Ajouter l'événement</a>
-        </div>
-      </div>
+	  	<div class="row text-center text-lg-left">
+	  		@foreach($commentaires as $commentaire)
+			  		<div class="col-lg-12 col-md-4 col-6">
+			  			<h4>{{ $commentaire->auteur_commentaire }}</h4>
+			  			<h6>{{ $commentaire->date_commentaire }}</h6>
+			  			<p>{{ $commentaire->description_commentaire }}</p>
+			    	</div>
+	    	@endforeach
+	    </div>
 	</div>
-
 @endsection
