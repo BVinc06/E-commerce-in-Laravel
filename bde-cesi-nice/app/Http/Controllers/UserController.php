@@ -75,7 +75,10 @@ class UserController extends Controller
     {
         $utilisateur = User::findOrFail($id);
         return view('Utilisateurs/utilisateur_show')->withUtilisateur($utilisateur);
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
     }
 
     /**

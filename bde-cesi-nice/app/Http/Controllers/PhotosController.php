@@ -7,7 +7,10 @@ use App\Http\Requests;
 use App\Photos;
 use App\Evenements;
 use App\User;
+<<<<<<< HEAD
 use App\Commentaires;
+=======
+>>>>>>> master
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 //use App\Http\Controllers\Controller;
@@ -161,6 +164,36 @@ class PhotosController
     public function management_photo() {
         $photos = Photos::all();
         return view('Photos/picture')->withPhotos($photos)->withCanDelete('');
+
+    }
+
+    public function imageUpload()
+        {
+        return view('Photos/imageUpload');
+    }
+
+    public function imageUploadPost()
+    {
+        request()->validate([
+
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
+        ]);
+
+
+
+        $imageName = time().'.'.request()->image->getClientOriginalExtension();
+
+        request()->image->move(public_path('images'), $imageName);
+
+
+
+        return back()
+
+            ->with('success','L\'image a bien été téléchargée !')
+
+            ->with('image',$imageName);
+
 
     }
 }

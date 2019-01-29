@@ -37,9 +37,14 @@
 @section('main')
 
 <div class="container">
+<<<<<<< HEAD
 	 <h1 class="my-4">Boutique <a class="btn btn-primary" href="{{ asset('create_article') }}">Ajouter un article</a></h1>
 
 	 <!-- SLIDES -->
+=======
+	 <h1 class="my-4">Boutique @if(Auth::user()->d_bde_user)<a class="btn btn-primary bouton_bleu_head" href="{{ asset('gestion_article') }}">Gestion des articles</a>@endif</h1>
+        
+>>>>>>> master
    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -61,7 +66,10 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+<<<<<<< HEAD
   <!------------------->
+=======
+>>>>>>> master
   <br>
 
   @isset($addToCart)
@@ -69,6 +77,7 @@
       {{ $addToCart }}
     </div>
   @endisset
+<<<<<<< HEAD
 
   @foreach ($produits as $produit)
      <div class="row">
@@ -76,6 +85,17 @@
             <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
         </div>
         <div class="col-md-5">
+=======
+  @foreach ($produits as $produit)
+     <div class="row">
+        <div class="col-md-7">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="" alt="">
+        </div>
+        <div class="col-md-5">
+
+ 
+
+>>>>>>> master
           <h3>Produit : {{ $produit->nom_produit }}</h3>
           <h5>Prix : {{ $produit->prix_produit }}€</h5>
           <p>{{ $produit->description_produit }}</p>
@@ -85,7 +105,10 @@
       </div>
       <hr>
     @endforeach
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 	</div>
 
 @endsection

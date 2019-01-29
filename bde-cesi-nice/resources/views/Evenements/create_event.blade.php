@@ -38,11 +38,45 @@
 <div class="container">
 	 <h1 class="my-4">Créer un événement</h1>
 
+<<<<<<< HEAD
 <div class="row">
+=======
+@isset($evenement)
+{!! Form::model($evenement, ['route' => ['evenements.update', $evenement->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
+					<div class="form-group {!! $errors->has('nom_evenement') ? 'has-error' : '' !!}">
+					  	{!! Form::text('nom_evenement', null, ['class' => 'form-control', 'placeholder' => 'Titre']) !!}
+					  	{!! $errors->first('nom_evenement', '<small class="help-block">:message</small>') !!}
+					</div>
+					<div class="form-group {!! $errors->has('prix_evenement') ? 'has-error' : '' !!}">
+					  	{!! Form::number('prix_evenement', null, ['class' => 'form-control', 'placeholder' => 'Prix']) !!}
+					  	{!! $errors->first('prix_evenement', '<small class="help-block">:message</small>') !!}
+					</div>
+					<div class="form-group {!! $errors->has('lieu_evenement') ? 'has-error' : '' !!}">
+					  	{!! Form::text('lieu_evenement', null, ['class' => 'form-control', 'placeholder' => 'Lieu']) !!}
+					  	{!! $errors->first('lieu_evenement', '<small class="help-block">:message</small>') !!}
+					</div>
+					<h6>Date début : <input class="eventcrea" type="datetime-local" name="date_debut_evenement"required></h6>
+          			<h6>Date fin : <input class="eventcrea" type="datetime-local" name="date_fin_evenement"required></h6>
+          			<h6>Evénement récurrent : <input class="eventcrea" type="radio" name="recurrent"></h6>
+					<div class="form-group {!! $errors->has('description_evenement') ? 'has-error' : '' !!}">
+					  	{!! Form::text('description_evenement', null, ['class' => 'form-control', 'placeholder' => 'Description']) !!}
+					  	{!! $errors->first('description_evenement', '<small class="help-block">:message</small>') !!}
+					</div>
+						{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
+					{!! Form::close() !!}
+
+
+@endisset
+
+@empty($evenement)
+{!! Form::open(['route' => 'evenements.store']) !!}
+	<div class="row">
+>>>>>>> master
       	<div class="col-md-7">
             <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
         </div>
         <div class="col-md-5">
+<<<<<<< HEAD
           <h6>Titre : <input class="eventcrea" type="text" name="titre"/></h6>
           <h6>Prix : <input class="eventcrea" type="number" name="prix"/>€</h6>
           <h6>Lieu : <input class="eventcrea" type="text" name="lieu"/></h6>
@@ -51,5 +85,21 @@
         </div>
       </div>
 	</div>
+=======
+          <h6>Titre : <input class="eventcrea" type="text" name="nom_evenement" required></h6>
+          <h6>Prix : <input class="eventcrea" type="number" name="prix_evenement"/>€</h6>
+          <h6>Lieu : <input class="eventcrea" type="text" name="lieu_evenement"required></h6>
+          <h6>Date début : <input class="eventcrea" type="datetime-local" name="date_debut_evenement"required></h6>
+          <h6>Date fin : <input class="eventcrea" type="datetime-local" name="date_fin_evenement"required></h6>
+          <h6>Description : <br><textarea class="descripEvent" type="text" name="description_evenement" required></textarea></h6>
+          <h6>Evénement récurrent : <input class="eventcrea" type="radio" name="recurrent" value="1"></h6>
+			<input class="eventcrea" type="hidden" value="{{ Auth::user()->name }}&nbsp;{{ Auth::user()->firstname }}" name="auteur_evenement"/>
+             {!! Form::submit('Ajouter l\'événement', ['class' => 'btn btn-primary ajoutEvent bouton_bleu']) !!}
+          {!! Form::close() !!}
+        </div>
+      </div>
+	</div>
+@endempty
+>>>>>>> master
 
 @endsection

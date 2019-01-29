@@ -36,6 +36,7 @@
 
 @section('main')
 	<div class="container">
+<<<<<<< HEAD
   		<h1 class="display-4 text-center text-lg-left mt-4 mb-0">Galerie Photos <a class="btn btn-primary" href="{{ asset('ajout_photos') }}">Ajouter des photos</a> @if(Auth::user()->d_bde_user) {!! link_to_route('gestion', 'Gerer les photos', null, ['class' => 'btn btn-primary']) !!} @endif</h1>
 	  	<hr class="mb-5">
 	  	@isset($deleted)
@@ -43,10 +44,17 @@
 			{{ $deleted }}
 		</div>
 		@endisset
+=======
+  		<h1 class="display-4 text-center text-lg-left mt-4 mb-0">Galerie Photos <a class="btn btn-primary bouton_bleu_head" href="{{ asset('imageUpload') }}">Ajouter des photos</a>
+  	@if(Auth::user()->d_bde_user)<a id="bouton_bleu_head_dl_photos" class="btn btn-primary" href="{{ asset('create') }}">Télécharger les photos</a>@endif
+  	@if(Auth::user()->d_salarie_user)<a id="bouton_bleu_head_dl_photos" class="btn btn-primary" href="{{ asset('create') }}">Télécharger les photos</a>@endif</h1>
+	  	<hr class="mb-5">
+>>>>>>> master
 	  	<div class="row text-center text-lg-left">
 	  		@foreach($photos as $photo)
 	  			@isset($photo->url_photo)
 			  		<div class="col-lg-3 col-md-4 col-6">
+<<<<<<< HEAD
 			  			<img class="img-fluid img-thumbnail" src="{{ asset('images/'.$photo->url_photo) }}" alt="">
 						{!! link_to_route('like', 'Like', [$photo->id], ['class' => 'btn btn-primary']) !!}
 						{!! link_to_route('photos.show', 'Voir les commentaires', [$photo->id], ['class' => 'btn btn-primary']) !!}
@@ -55,6 +63,9 @@
 							{!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cette photo ?\')']) !!}
 							{!! Form::close() !!}
 						@endisset
+=======
+						<img class="img-fluid img-thumbnail" src="{{ asset('uploadphotos/'.$photo->url_photo) }}" alt="">
+>>>>>>> master
 			    	</div>
 		    	@endisset
 	    	@endforeach
