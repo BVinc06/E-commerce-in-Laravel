@@ -97,6 +97,12 @@ Route::get('/forget2',function(){
 Route::get('/legal',function(){
     return View::make('home/legal');
 });
+
+Route::get('evenements/participation/{n}', ['uses' => 'EvenementsController@participation_evenement_by_user', 'as' => 'evenements.participation'])->where('n', '[0-9]+')->middleware('auth');
+
+
+Route::get('/compte','UserController@edituser')->middleware('auth');
+Route::get('checkout', ['uses' => 'ProduitsController@checkout', 'as' => 'shop.checkout'])->middleware('auth');
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////

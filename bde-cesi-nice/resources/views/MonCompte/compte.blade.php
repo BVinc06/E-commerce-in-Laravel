@@ -37,7 +37,7 @@ BDE CESI Nice Connexion
 
 @section('main')
 <div class="container">
-<<<<<<< HEAD
+
 	 <h1 class="my-4">Mon Compte <a class="btn btn-primary" style="margin-left: 40%" href="{{ asset('utilisateurs') }}">Gestion des utilisateurs</a></h1>
 	@isset($updated)
 		<div class="container-fluid" style="background: green;">
