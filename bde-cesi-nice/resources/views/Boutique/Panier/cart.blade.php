@@ -32,8 +32,7 @@
 	<script src="{{ asset('vendor/daterangepicker/daterangepicker.js') }}"></script>
 	<script src="{{ asset('vendor/countdowntime/countdowntime.js') }}"></script>
 	<script src="{{ asset('js/mainCart.js') }}"></script>
-<<<<<<< HEAD
-=======
+
 
   <script type="text/javascript">
     document.getElementById('payer').setAttribute('href', '#');
@@ -48,7 +47,6 @@
     }
   </script>
 
->>>>>>> master
 @endsection
 
 @section('main')
@@ -97,9 +95,6 @@
           <div class="totals-value" id="cart-total">55</div>
         </div>
     </div>
-<<<<<<< HEAD
-    <button class="checkout">Checkout</button>
-=======
 
 
     <div class="col-md-4">
@@ -107,16 +102,11 @@
     </div> 
     {!! link_to_route('shop.checkout', 'Payer', null, ['class' => 'checkout', 'id' => 'payer', 'onclick' => 'check()']) !!}
 
->>>>>>> master
      
   @endisset
 
  </div>
 </div>
 	
+@endsection
 
-<<<<<<< HEAD
-@endsection
-=======
-@endsection
->>>>>>> master
