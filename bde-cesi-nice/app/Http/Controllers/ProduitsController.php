@@ -159,16 +159,20 @@ class ProduitsController
     public function delete_to_cart($id) {
 
         $keys = array_keys($_COOKIE, $id);
-
+       /* echo '<pre>';
+        print_r($keys); 
+        echo  '</pre>';
+        echo '<pre>';
+        print_r($_COOKIE); 
+        echo  '</pre>';*/
         foreach ($keys as $cookies_to_drop) {
             setcookie($cookies_to_drop, null, -1, '/'); // On expire le cookie
             unset($_COOKIE[$cookies_to_drop]);          // On l'efface du tableau
         }
-
+                
+       /* echo '<pre>';
+        print_r($_COOKIE); 
+        echo  '</pre>';*/
         return $this->cart();
-    }
-
-    public function checkout(){
-        return view('Boutique/Panier/checkout');
     }
 }

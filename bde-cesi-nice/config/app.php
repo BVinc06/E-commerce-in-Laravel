@@ -149,6 +149,7 @@ return [
         Illuminate\Encryption\EncryptionServiceProvider::class,
         Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
+        Illuminate\Cookie\CookieServiceProvider::class,
         Illuminate\Hashing\HashServiceProvider::class,
         Illuminate\Mail\MailServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
@@ -165,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Chumper\Zipper\ZipperServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -190,6 +192,7 @@ return [
 
     'aliases' => [
 
+        'Zipper' => Chumper\Zipper\Zipper::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
