@@ -36,11 +36,9 @@ BDE CESI Nice Boite à idées
 
 @section('main')
 <div class="container">
-<<<<<<< HEAD
-	<h1 class="my-4">Boîte à idées <a class="btn btn-primary" href="{{ asset('create_idea') }}">Apporter une idée</a></h1>
-=======
+
 	<h1 class="my-4">Boîte à idées @if(Auth::user()->d_bde_user)<a class="btn btn-primary" href="{{ asset('create_idea') }}">Apporter une idée</a>@endif</h1>
->>>>>>> master
+
 	<div class="row">
 	
 	@foreach ($idees as $idee)
@@ -49,14 +47,11 @@ BDE CESI Nice Boite à idées
 				<div class="card-body">
 					<h4 class="card-title">Titre : {{ $idee->nom_evenement }}</h4>
 					<p class="card-text">Description : {{ $idee->description_evenement }}</p>
-<<<<<<< HEAD
-					{!! link_to_route('box.edit', 'Valider', [$idee->id], ['class' => 'btn btn-primary']) !!}
-					{!! link_to_route('box.vote', 'Voter', [$idee->id], ['class' => 'btn btn-primary']) !!}
-=======
+
 					<input class="eventcrea" type="hidden" value="0" name="idee_evenement"/>
 					@if(Auth::user()->d_bde_user){!! link_to_route('box.edit', 'Valider', [$idee->id], ['class' => 'btn btn-primary']) !!}@endif
 					{!! link_to_route('box.index', 'Liker', [$idee->id], ['class' => 'btn btn-primary']) !!} {{-- MODIFIER LA ROUTE --}}
->>>>>>> master
+
 				</div>
 			</div>
 		</div>
