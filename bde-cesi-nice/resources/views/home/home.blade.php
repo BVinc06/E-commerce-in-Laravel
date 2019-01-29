@@ -54,27 +54,7 @@
       </a>
     </div>
     <!------------------->
-<<<<<<< HEAD
 
-    <h1>AUTH</h1>
-
-  @endauth
-
-  @guest
-  
-    @section('title')
-      Accueil
-    @endsection
-
-    @section('header')
-     @include('../default/mainHeader')
-    @endsection
-
-    @section('footer')
-     @include('../default/mainFooter')
-    @endsection
-
-=======
 
     <h1>AUTH</h1>
 
@@ -95,7 +75,7 @@
      @include('../default/mainFooter')
     @endsection
 
->>>>>>> master
+
      <!-- SLIDES -->
      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
