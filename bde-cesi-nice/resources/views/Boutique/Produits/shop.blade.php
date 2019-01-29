@@ -37,9 +37,10 @@
 @section('main')
 
 <div class="container">
-	 <h1 class="my-4">Boutique <a class="btn btn-primary" href="{{ asset('create_article') }}">Ajouter un article</a></h1>
 
-	 <!-- SLIDES -->
+
+	 <h1 class="my-4">Boutique @if(Auth::user()->d_bde_user)<a class="btn btn-primary bouton_bleu_head" href="{{ asset('gestion_article') }}">Gestion des articles</a>@endif</h1>
+
    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -61,7 +62,8 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-  <!------------------->
+
+
   <br>
 
   @isset($addToCart)
@@ -73,6 +75,7 @@
   @foreach ($produits as $produit)
      <div class="row">
         <div class="col-md-7">
+
             <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
         </div>
         <div class="col-md-5">
@@ -81,6 +84,13 @@
           <p>{{ $produit->description_produit }}</p>
           {!! link_to_route('shop.show', 'Voir le produit', [$produit->id], ['class' => 'btn btn-primary']) !!}
           {!! link_to_route('shop.add', 'Ajouter au panier', [$produit->id], ['class' => 'btn btn-primary']) !!}
+
+{!! link_to_route('shop.edit', 'Modifier', [$produit->id], ['class' => 'btn btn-warning btn-block']) !!}
+           {!! Form::open(['method' => 'DELETE', 'route' => ['shop.destroy', $produit->id]]) !!}
+              {!! Form::submit('Supprimer', ['class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet article ?\')']) !!}
+            {!! Form::close() !!}
+
+
         </div>
       </div>
       <hr>
@@ -89,3 +99,4 @@
 	</div>
 
 @endsection
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 use App\Http\Requests;
 use App\User;
 use App\Evenements;
@@ -44,13 +45,17 @@ class BoxController
         $ideas = new Evenements;
 
         $ideas->nom_evenement = $request['titre'];
-        $ideas->auteur_evenement = $request['auteur'];
+
+
+        $ideas->auteur_evenement = $request['auteur_evenement'];
+
         $ideas->date_debut_evenement = $request['date_debut'];
         $ideas->date_fin_evenement = $request['date_fin'];
         $ideas->lieu_evenement = $request['lieu_evenement'];
         $ideas->prix_evenement = $request['prix'];
         $ideas->description_evenement = $request['description_evenement'];
         $ideas->idee_evenement = $request['idee_evenement'];
+        $ideas->user_id = Auth::id();
 
         
 
@@ -76,10 +81,13 @@ class BoxController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+
+   public function edit($id)
     {
-        //Doit retourner la vue pour modifier les champs si besoin sinon l'admin va directement valider l'idée.
-        // TODO : Remplir les champs avec les données remplis par l'auteur de l'idée.
+        $ideas = Evenements::findOrFail($id);
+        return view('Evenements/create_event')->withevenement($ideas);
+
     }
 
     /**
@@ -91,8 +99,19 @@ class BoxController
      */
     public function update(Request $request, $id)
     {
-        //Va modifier l'évenement (donc l'idée) avec la requête envoyé par le formulaire de la vue retournée par edit().
+
+        $ideas = Evenements::where('id',$id)->first();
+        //On récupère les éléments des champs
+        
+            $ideas->idee_evenement = 1;
+        
+
+        $ideas->save();
+
+        return view('Evenements/create_event')->withEvenements($ideas)->withUpdated('Idée transformée en événement.');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -105,6 +124,8 @@ class BoxController
         //
     }
 
+
+
     public function vote_evenement_by_user($idee_evenement){
         
         //Ajout ou enleve l'enregistrement si on reclique dessus
@@ -112,4 +133,5 @@ class BoxController
         $user->vote_evenement()->toggle($idee_evenement);
         return $this->index();
     }
+
 }

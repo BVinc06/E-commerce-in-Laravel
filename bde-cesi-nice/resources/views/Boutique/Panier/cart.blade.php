@@ -32,6 +32,8 @@
 	<script src="{{ asset('vendor/daterangepicker/daterangepicker.js') }}"></script>
 	<script src="{{ asset('vendor/countdowntime/countdowntime.js') }}"></script>
 	<script src="{{ asset('js/mainCart.js') }}"></script>
+
+
   <script type="text/javascript">
     document.getElementById('payer').setAttribute('href', '#');
     
@@ -44,6 +46,7 @@
       }
     }
   </script>
+
 @endsection
 
 @section('main')
@@ -93,15 +96,17 @@
         </div>
     </div>
 
+
     <div class="col-md-4">
       <span><input type="checkbox" id="acceptance" required> Accepter les conditions générales de ventes</span>
     </div> 
     {!! link_to_route('shop.checkout', 'Payer', null, ['class' => 'checkout', 'id' => 'payer', 'onclick' => 'check()']) !!}
+
      
   @endisset
 
  </div>
 </div>
 	
-
 @endsection
+

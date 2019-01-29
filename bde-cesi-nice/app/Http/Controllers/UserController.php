@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class UserController extends Controller
 {
@@ -87,6 +90,16 @@ class UserController extends Controller
     {
         $utilisateur = User::findOrFail($id);
         return view('Utilisateurs/utilisateur_edit')->withUtilisateur($utilisateur);
+
+     
+    }
+     public function edituser()
+    {
+        $id = Auth::id();
+        $utilisateur = User::findOrFail($id);
+        
+         return view('MonCompte/compte')->withUtilisateur($utilisateur);
+
     }
 
     /**
@@ -103,7 +116,17 @@ class UserController extends Controller
         
         $utilisateur->name = $request['name'];
         $utilisateur->email = $request['email'];
-        
+
+
+        if(isset($request['firstname'])){
+        $utilisateur->firstname = $request['firstname'];
+        }
+
+        if(isset($request['password'])){ 
+        $utilisateur->password = $request['password'];
+        }
+       
+
         if(isset($request['d_bde_user'])){
             $utilisateur->d_bde_user = 1;
         } else {
@@ -122,7 +145,9 @@ class UserController extends Controller
 
         $utilisateur->save();
 
-        return view('Utilisateurs/utilisateur_edit')->withUtilisateur($utilisateur)->withUpdated('Utilisateur modifié.');
+           return view('MonCompte/compte')->withUtilisateur($utilisateur)->withUpdated('Utilisateur modifié.');
+
+
     }
 
     /**

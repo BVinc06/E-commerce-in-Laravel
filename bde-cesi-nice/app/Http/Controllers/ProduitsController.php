@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Produits;
+use App\Categories;
 //use App\Http\Controllers\Controller;
 
 class ProduitsController
@@ -57,9 +58,11 @@ class ProduitsController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+         $produits = Produits::all()->sortByDesc('compteur_produit')
+         ->limit(3);
+        return view('Boutique/Produits/shop')->withProduits($produits);
     }
 
     /**
@@ -70,7 +73,10 @@ class ProduitsController
      */
     public function edit($id)
     {
-        //
+        $produit = Produits::findOrFail($id);
+        //$categorie = Categories::findOrFail($produit->categories_id);
+
+        return view('Boutique/Produits/edit_article')->withProduit($produit);
     }
 
     /**
@@ -82,7 +88,20 @@ class ProduitsController
      */
     public function update(Request $request, $id)
     {
-        //
+         $produit = Produits::where('id',$id)->first();
+         $categorie = Categories::findOrFail($produit->categories_id);
+
+
+        //On récupère les éléments des champs
+       // dd($request);
+        $produit->nom_produit = $request['nom_produit'];
+        $produit->description_produit = $request['description_produit'];
+        $produit->categories_id = $request['categories_id'];
+        $produit->quantite_produit = $request['quantite_produit'];
+        $produit->categorie()->associate($categorie);
+        $produit->save();
+
+        return view('Boutique/Produits/edit_article')->withProduit($produit)->withUpdated('Article modifié.');
     }
 
     /**
@@ -93,7 +112,10 @@ class ProduitsController
      */
     public function destroy($id)
     {
-        //
+       Produits::where('id',$id)->first()->delete();
+       // $produits = Produits::all();
+        //return view('home/delete_article')->withDeleted('Article supprimé.')->withProduits($produits);
+       return $this->index();
     }
 
     public function add_to_cart($id){
@@ -157,16 +179,24 @@ class ProduitsController
     public function delete_to_cart($id) {
 
         $keys = array_keys($_COOKIE, $id);
-
+       /* echo '<pre>';
+        print_r($keys); 
+        echo  '</pre>';
+        echo '<pre>';
+        print_r($_COOKIE); 
+        echo  '</pre>';*/
         foreach ($keys as $cookies_to_drop) {
             setcookie($cookies_to_drop, null, -1, '/'); // On expire le cookie
             unset($_COOKIE[$cookies_to_drop]);          // On l'efface du tableau
         }
-
+                
+       /* echo '<pre>';
+        print_r($_COOKIE); 
+        echo  '</pre>';*/
         return $this->cart();
     }
 
-    public function checkout(){
+      public function checkout(){
         return view('Boutique/Panier/checkout');
     }
 }

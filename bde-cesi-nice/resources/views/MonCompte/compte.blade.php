@@ -37,57 +37,60 @@ BDE CESI Nice Connexion
 
 @section('main')
 <div class="container">
-	 <h1 class="my-4">Mon compte </h1>
 
+	 <h1 class="my-4">Mon Compte <a class="btn btn-primary" style="margin-left: 40%" href="{{ asset('utilisateurs') }}">Gestion des utilisateurs</a></h1>
+	@isset($updated)
+		<div class="container-fluid" style="background: green;">
+			{{ $updated }}
+		</div>
+	@endisset
 
-	<form action="{{ url('users') }}" method="POST">
-		{{ csrf_field() }}
-		<div class="row">
-			<div class="col-lg-2 col-md-12">
-				<label for="nom">Nom : </label>
-			</div>
-			<div class="col-lg-3 col-md-12">
-				<input type="text" name="nom" id="nom">
-			</div>
-			<div class="col-lg-2 col-md-12">
-				<label for="prenom">Prénom : </label>
-			</div>
-			<div class="col-lg-3 col-md-12">
-				<input type="text" name="prenom" id="prenom">
-			</div>
+	<div class="col-sm-offset-4 col-sm-4">
+    	<br>
+		<div class="panel panel-primary">	
+			<div class="panel-heading">Modification des informations</div><br>
+			<div class="panel-body"> 
+				
+				<div class="col-sm-12">
+			
+				{!! Form::model($utilisateur, ['route' => ['utilisateurs.update', $utilisateur->id], 'method' => 'put', 'class' => 'form-horizontal panel']) !!}
+
+	
+			<div class="form-group {!! $errors->has('name') ? 'has-error' : '' !!}">
+					  	{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nom']) !!}
+					  	{!! $errors->first('name', '<small class="help-block">:message</small>') !!}
+					</div>
+			
+			
+			<div class="form-group {!! $errors->has('fisrtname') ? 'has-error' : '' !!}">
+					  	{!! Form::text('firstname', null, ['class' => 'form-control', 'placeholder' => 'Prénom']) !!}
+					  	{!! $errors->first('firstname', '<small class="help-block">:message</small>') !!}
+					</div>
 			
 
-		</div>
-		<div class="row">
-			<div class="col-lg-2 col-md-12">
-				<label for="email">E-mail : </label>
-			</div>
-			<div class="col-lg-3 col-md-12">
-				<input type="text" name="email" id="email">
-			</div>
-			<div class="col-lg-2 col-md-12">
-				<label for="password">Mot de passe : </label>
-			</div>
-			<div class="col-lg-3 col-md-12">
-				<input type="password" name="password" id="password">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-2 col-md-12">
-				<label for="campus">Campus : </label>
-			</div>
-			<div class="col-lg-3 col-md-12">
-				<input type="text" name="campus" id="campus">
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-10 col-md-12">
 
-			</div>
-			<div class="col-lg-2 col-md-4"> 
-				<input style="cursor: pointer;" type="submit" value="Enregistrer">
-			</div>
-		</div>
+			<div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
+					  	{!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
+					  	{!! $errors->first('email', '<small class="help-block">:message</small>') !!}
+					</div>
+
+
+			<div class="form-group {!! $errors->has('password') ? 'has-error' : '' !!}">
+					  	<div class="form-group ">
+					  	<input class="form-control" placeholder="Mot de passe" name="password" type="password" value="">
+					  	
+					</div>
+
+					  	{!! $errors->first('password', '<small class="help-block">:message</small>') !!}
+					</div>
+			
+			
+				
+			
+			{!! Form::submit('Envoyer', ['class' => 'btn btn-primary pull-right']) !!}
+					{!! Form::close() !!}
+		
+		
 
 	</form>
 </div>

@@ -67,6 +67,10 @@ class ImageUploadController
         $imgup->evenements_id = $request['evenements_id'];
        
         $imgup->save();
+
+
+        return view('home/imageUpload')->withPhotos ($imgup)->withUpdated('Photo ajouté');
+
     }
 
     /**

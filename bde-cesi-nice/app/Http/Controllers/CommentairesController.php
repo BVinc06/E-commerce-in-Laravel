@@ -30,9 +30,11 @@ class CommentairesController
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create_com_photo($id)
     {
         return view('Photos/picture_com_add')->withCreate('')->withId($id);
+
     }
 
     /**
@@ -43,6 +45,7 @@ class CommentairesController
      */
     public function store(Request $request)
     {
+
         $commentaire = new Commentaires;
 
         $commentaire->description_commentaire = $request['description_commentaire'];
@@ -53,6 +56,7 @@ class CommentairesController
 
         return $this->show($request['photos_id'], 'Commentaire ajouté !');
 
+
     }
 
     /**
@@ -61,11 +65,13 @@ class CommentairesController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id, $sting)
     {
         $photo = Photos::find($id);
         $commentaires = Photos::find($id)->commentaires->sortByDesc('id');
         return view('Photos/picture_com')->withPhoto($photo)->withCommentaires($commentaires)->withCommentairesAdd($sting);
+
     }
 
     /**

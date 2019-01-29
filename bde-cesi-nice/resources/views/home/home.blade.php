@@ -39,7 +39,9 @@
           <img class="d-block w-100" src="{{ asset('image/slide2.png') }}" alt="Second slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="{{ asset('image/slide3.png') }}" alt="Third slide">
+
+          <text>hgdrh <alt="Third slide">
+
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -53,12 +55,9 @@
     </div>
     <!------------------->
 
+
     <h1>AUTH</h1>
 
-    {{ Auth::user()->d_bde_user }}
-    @if(Auth::user()->d_bde_user)
-      BDE
-    @endif
 
   @endauth
 
@@ -75,6 +74,7 @@
     @section('footer')
      @include('../default/mainFooter')
     @endsection
+
 
      <!-- SLIDES -->
      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -105,3 +105,4 @@
   @endguest
 
 @endsection
+

@@ -37,22 +37,40 @@
 
 @section('main')
 <div class="container">
-	 <h1 class="my-4">Liste des événements <a class="btn btn-primary" href="{{ asset('/Evenements/create_event') }}">Ajouter un événement</a></h1>
+
+
+	 <h1 class="my-4">Liste des événements @if(Auth::user()->d_bde_user)
+<a class="btn btn-primary" href="{{ asset('create_event') }}">Ajouter un événement</a>@endif</h1>
+
 
 	 @foreach ($evenements as $evenement)
 		 <div class="row">
 		  	<div class="col-md-7">
-		        <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+
+
+		        <img class="img-fluid rounded mb-3 mb-md-0" src="{{ asset('uploadphotos/'.$evenement->url_photo) }}" alt="{{ $evenement->description_image_evenement }}">
+
+
 		    </div>
 		    <div class="col-md-5">
 		      <h3>Événement : {{ $evenement->nom_evenement }}</h3>
 		      <h5>Lieu : {{ $evenement->lieu_evenement }} - Prix : {{ $evenement->prix_evenement }}</h5>
 		      <p>{{ $evenement->description_evenement }}</p>
+
+
 		      {!! link_to_route('evenements.participation', 'S\'inscrire', [$evenement->id], ['class' => 'btn btn-primary']) !!}
-		      {!! link_to_route('export', 'Voir la liste des inscrits', [$evenement->id], ['class' => 'btn btn-primary']) !!}
+		     
+		      @if(Auth::user()->d_bde_user){!! link_to_route('export', 'Voir la liste des inscrits', [$evenement->id], ['class' => 'btn btn-primary']) !!}@endif
+{!! Form::open(['method' => 'DELETE', 'route' => ['evenements.destroy', $evenement->id]]) !!}
+							{!! Form::submit('Supprimer', ['class' => 'btn btn-primary', 'onclick' => 'return confirm(\'Vraiment supprimer cet article ?\')']) !!}
+						{!! Form::close() !!}
+
+
+
 		    </div>
 		  </div>
 		  <hr>
 	  @endforeach
 </div>
 @endsection
+

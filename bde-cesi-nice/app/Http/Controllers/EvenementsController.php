@@ -7,8 +7,10 @@ use App\Http\Requests;
 use App\User;
 use App\Evenements;
 use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
 //use App\Http\Controllers\Controller;
 
 use App\Notifications\NotificationAuteurIdee;
@@ -22,7 +24,9 @@ class EvenementsController
      */
     public function index()
     {
-        $evenements = Evenements::all()->where('idee_evenement', 1);
+
+
+        $evenements = Evenements::all()->where('idee_evenement', 1)->sortByDesc('date_fin_evenement');
         return view('Evenements/evenements')->withEvenements($evenements);
     }
 
@@ -48,16 +52,21 @@ class EvenementsController
 
         $contact = User($email)
 
-        $evenements->nom_evenement = $request['titre'];
-        $evenements->auteur_evenement = $request['auteur'];
-        $evenements->date_debut_evenement = $request['date_debut'];
-        $evenements->date_fin_evenement = $request['date_fin'];
+
+
+        $evenements->nom_evenement = $request['nom_evenement'];
+        $evenements->auteur_evenement = $request['auteur_evenement'];
+        $evenements->date_debut_evenement = $request['date_debut_evenement'];
+        $evenements->date_fin_evenement = $request['date_fin_evenement'];
         $evenements->lieu_evenement = $request['lieu_evenement'];
-        $evenements->prix_evenement = $request['prix'];
+        $evenements->prix_evenement = $request['prix_evenement'];
         $evenements->description_evenement = $request['description_evenement'];
-        $evenements->nom_photo = $request['nom_photo'];
+        $evenements->url_photo = $request['url_photo'];
         $evenements->description_image_evenement = $request['description_image_evenement'];
         $evenements->idee_evenement = $request['idee_evenement'];
+        $evenements->recurrence_evenement = $request['recurrent'];
+        $evenements->user_id =  Auth::id();
+
 
         $evenements->save();
 
@@ -85,7 +94,11 @@ class EvenementsController
      */
     public function edit($id)
     {
-        //
+
+
+        $evenements = Evenements::findOrFail($id);
+        return view('Evenements/create_event')->withEvenements($evenements);
+
     }
 
     /**
@@ -97,7 +110,26 @@ class EvenementsController
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $evenements = Evenements::where('id',$id)->first();
+
+        $evenements->nom_evenement = $request['nom_evenement'];
+        if(isset($request['auteur_evenement'])){
+        $evenements->auteur_evenement = $request['auteur_evenement'];
+    }
+        $evenements->date_debut_evenement = $request['date_debut_evenement'];
+        $evenements->date_fin_evenement = $request['date_fin_evenement'];
+        $evenements->lieu_evenement = $request['lieu_evenement'];
+        $evenements->prix_evenement = $request['prix_evenement'];
+        $evenements->description_evenement = $request['description_evenement'];
+        $evenements->url_photo = $request['url_photo'];
+        $evenements->description_image_evenement = $request['description_image_evenement'];
+        $evenements->idee_evenement = 1;
+
+        $evenements->save();
+
+        return view('Evenements/event')->withEvenements ($evenements)->withUpdated('Événement créé');
+
     }
 
     /**
@@ -108,7 +140,11 @@ class EvenementsController
      */
     public function destroy($id)
     {
-        //
+        Evenements::where('id',$id)->first()->delete();
+        //$evenements = Evenements::all();
+        //return view('Evenements/evenements')->withDeleted('Evenement supprimé.')->withEvenements($evenements);
+        return $this->index();
+
     }
 
     public function export_users_registered($id)
@@ -132,6 +168,8 @@ class EvenementsController
         }
     }
 
+
+
     public function participation_evenement_by_user($evenement){
         
         //Ajout ou enleve l'enregistrement si on reclique dessus
@@ -142,4 +180,5 @@ class EvenementsController
         }
         return $this->index();
     }
+
 }
