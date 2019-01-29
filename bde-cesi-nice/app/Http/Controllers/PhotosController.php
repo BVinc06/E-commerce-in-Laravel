@@ -7,10 +7,8 @@ use App\Http\Requests;
 use App\Photos;
 use App\Evenements;
 use App\User;
-<<<<<<< HEAD
 use App\Commentaires;
-=======
->>>>>>> master
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 //use App\Http\Controllers\Controller;
