@@ -39,11 +39,9 @@
           <img class="d-block w-100" src="{{ asset('image/slide2.png') }}" alt="Second slide">
         </div>
         <div class="carousel-item">
-<<<<<<< HEAD
+
           <text>hgdrh <alt="Third slide">
-=======
-          <img class="d-block w-100" src="{{ asset('image/slide3.png') }}" alt="Third slide">
->>>>>>> master
+
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -126,8 +124,5 @@
 
   @endguest
 
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> master
+
