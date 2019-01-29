@@ -7,11 +7,9 @@ use App\Http\Requests;
 use App\User;
 use App\Evenements;
 use Carbon\Carbon;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-=======
->>>>>>> master
+
 //use App\Http\Controllers\Controller;
 
 class EvenementsController
@@ -23,11 +21,8 @@ class EvenementsController
      */
     public function index()
     {
-<<<<<<< HEAD
-        $evenements = Evenements::all()->where('idee_evenement', 1);
-=======
+
         $evenements = Evenements::all()->where('idee_evenement', 1)->sortByDesc('date_fin_evenement');
->>>>>>> master
         return view('Evenements/evenements')->withEvenements($evenements);
     }
 
@@ -51,18 +46,7 @@ class EvenementsController
     {
         $evenements = new Evenements;
 
-<<<<<<< HEAD
-        $evenements->nom_evenement = $request['titre'];
-        $evenements->auteur_evenement = $request['auteur'];
-        $evenements->date_debut_evenement = $request['date_debut'];
-        $evenements->date_fin_evenement = $request['date_fin'];
-        $evenements->lieu_evenement = $request['lieu_evenement'];
-        $evenements->prix_evenement = $request['prix'];
-        $evenements->description_evenement = $request['description_evenement'];
-        $evenements->nom_photo = $request['nom_photo'];
-        $evenements->description_image_evenement = $request['description_image_evenement'];
-        $evenements->idee_evenement = $request['idee_evenement'];
-=======
+
         $evenements->nom_evenement = $request['nom_evenement'];
         $evenements->auteur_evenement = $request['auteur_evenement'];
         $evenements->date_debut_evenement = $request['date_debut_evenement'];
@@ -74,7 +58,7 @@ class EvenementsController
         $evenements->description_image_evenement = $request['description_image_evenement'];
         $evenements->idee_evenement = $request['idee_evenement'];
         $evenements->recurrence_evenement = $request['recurrent'];
->>>>>>> master
+
 
         $evenements->save();
 
@@ -163,7 +147,7 @@ class EvenementsController
             $csv->output('export_' . $evenement->nom_evenement . '_' . time() . '.csv');
         }
     }
-<<<<<<< HEAD
+
 
     public function participation_evenement_by_user($evenement){
         
@@ -175,6 +159,5 @@ class EvenementsController
         }
         return $this->index();
     }
-=======
->>>>>>> master
+
 }
